@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="333" height="62" viewBox="0 0 333 62">
+    <defs>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}.cls-2{clip-path:url(#clip-path)}.cls-3{fill:#fff}.cls-4{fill:#ed4d67}.cls-5,.cls-7{fill:#eb384f}.cls-5{font-size:15px;font-family:Roboto-Regular,Roboto}.cls-6{fill:#000}
+        </style>
+        <linearGradient id="linear-gradient" x1="1.124" x2=".282" y1="1.059" y2=".569" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#7e0947"/>
+            <stop offset="1" stop-color="#ed4d67"/>
+        </linearGradient>
+        <clipPath id="clip-path">
+            <path id="Path_3041" d="M12 0h309a12 12 0 0 1 12 12v50H0V12A12 12 0 0 1 12 0z" class="cls-1" data-name="Path 3041" transform="translate(2691 -2049)"/>
+        </clipPath>
+    </defs>
+    <g id="Group_6848" data-name="Group 6848" transform="translate(-2691 2049)">
+        <path id="Path_2603" d="M12 0h309a12 12 0 0 1 12 12v50H0V12A12 12 0 0 1 12 0z" class="cls-1" data-name="Path 2603" transform="translate(2691 -2049)"/>
+        <g id="Mask_Group_23" class="cls-2" data-name="Mask Group 23">
+            <rect id="Rectangle_1748" width="159" height="159" class="cls-3" data-name="Rectangle 1748" rx="29" transform="rotate(45 3950.617 2228.04)"/>
+        </g>
+        <g id="Icon" transform="translate(2352.59 -2342.063)">
+            <g id="Group_620" data-name="Group 620" transform="translate(358.409 308.063)">
+                <path id="Path_357" d="M474.036 499.32v8.98a3.56 3.56 0 0 1-3.56 3.56h-20.71l5.427-5.391h11.027c1.7 0 2.486-1.4 2.486-3.092v-4.057z" data-name="Path 357" transform="translate(-442.202 -483.485)"/>
+                <path id="Path_358" d="M386.682 308.063h-24.713a3.56 3.56 0 0 0-3.56 3.56v10.564h5.3V315.8a2.409 2.409 0 0 1 2.409-2.409H382.5a2.409 2.409 0 0 1 2.409 2.409v1.079h5.33v-5.257a3.56 3.56 0 0 0-3.557-3.559z" data-name="Path 358" transform="translate(-358.409 -308.063)"/>
+                <path id="Path_359" d="M382.352 414.937l-22.6 22.7a.749.749 0 0 1-1.286-.554l-.058-15.126h5.276v4.127l11.167-11.148z" class="cls-4" data-name="Path 359" transform="translate(-358.409 -406.089)"/>
+            </g>
+            <text id="salesken" class="cls-5" transform="translate(398.941 326.461)">
+                <tspan x="0" y="0" class="cls-6">sales</tspan><tspan y="0" class="cls-7">ken</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

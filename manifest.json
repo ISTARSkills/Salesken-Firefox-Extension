@@ -1,0 +1,42 @@
+{
+    "name": "Salesken",
+    "version": "1.1",
+    "description": "Salesken Realtime Cues Tool",
+	"homepage_url": "https://salesken.ai/",
+    "manifest_version": 2,
+    "icons": {
+        "16": "images/skenicon-16x16.png",
+        "32":"images/skenicon-32x32.png",
+        "48": "images/skenicon-48x48.png"
+      },
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+	"browser_specific_settings": {
+        "gecko": {
+          "id": "newsalesken@salesken.ai",
+          "strict_min_version": "57.0a1"
+        }
+    },
+    "content_scripts":[{
+        "matches": ["<all_urls>"],
+        "css": ["widget/widget.css"],
+        "js": ["interact.min.js","content.js"]
+    }],
+    "permissions": [
+        "storage",
+        "activeTab",
+        "tabs"
+    ],
+    "browser_action": {
+        "default_title": "Salesken",
+        "default_popup": "popup/popup.html"
+    },
+    "web_accessible_resources":[
+        "widget/widget.html",
+        "images/app-icon(512x512).png",
+        "images/nav_icon.png"
+    ]
+}

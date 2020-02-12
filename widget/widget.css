@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+.sken-chat-container {
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-widget-container {
+    position: fixed;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    z-index: 1000000000000000;
+    width: 50px;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.icon-shadow {
+    box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.sken-chat-container {
+    position: absolute;
+    height: 500px;
+    width: 333px;
+    box-shadow: 0 3px 40px 0 rgba(0, 0, 0, 0.16);
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-chat-container>.sken-header {
+    height: 62px;
+    width: 100%;
+    /* background-image: linear-gradient(276deg, #7e0947 112%, #ed4d67 29%); */
+    border-radius: 10px 10px 0 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-searchbar {
+    /* height: 55px; */
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-login-logout {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.sken-sign-in-out-btn {
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    color: #ed4d67;
+    font-weight: 500;
+}
+
+#sken-email-id {
+    color: #222222;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-search-box-input {
+    padding: 8px 10px 8px 10px !important;
+    color: #999999 !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+    border: solid 1px #dddddd !important;
+    background-color: #ffffff !important;
+    outline: none !important;
+    width: 100% !important;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.sken-cues-body {
+    display: flex !important;
+    flex-direction: row !important;
+    box-sizing: border-box !important;
+    height: calc(100% - 160px);
+    background-color: #f9f9f9;
+    padding: 20px 15px;
+    overflow: auto;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    align-items: flex-end;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-cue-card {
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 8px 4px 40px 0 rgba(0, 0, 0, 0.15);
+    border: solid 1px #dddddd;
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-cue-time {
+    font-size: 12px;
+    color: #999999;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+
+.sken-cue-title {
+    font-size: 16px;
+    color: #43425d;
+    text-align: left;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 10px;
+}
+
+.sken-cue-text {
+    font-size: 14px;
+    color: #43425d;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-button-transparent {
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    padding: 3px !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sken-button-theme {
+    /* height: 40px !important; */
+    background-color: #ed4d67 !important;
+    font-size: 14px !important;
+    font-family: 'Roboto', sans-serif !important;
+    color: #ffffff !important;
+    outline: none !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    text-align: center !important;
+    vertical-align: center !important;
+    margin-top: 30px !important;
+    border: 0 !important;
+    width: 100% !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+}
+
+.sken-title {
+    color: #fff;
+    padding-left: 20px;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.f-12 {
+    font-size: 12px;
+}
+
+.text-999 {
+    color: #999999;
+}
+
+.ml-auto {
+    margin-left: auto;
+}
