@@ -1,5 +1,5 @@
 body{
-    width: 360px;
+    width: 380px;
     /* height: 200px; */
 }
 .salesken-alert{
@@ -90,8 +90,12 @@ body{
 }
 .eye-icon{
     position: absolute;
-    top: -35px;
-    right: 5%;
+    top: 64%;
+    right: 4%;
     height: 24px;
     width: 24px;
+}
+
+.relative-pos{
+    position: relative;
 }

@@ -6,17 +6,16 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../styles.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='popup.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../popup/popup.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='options.css'>
+
 
 </head>
 
 <body>
-    <div class="container shadow    ">
-        <!-- <img class="p-6" src="/images/nav_icon.png"> -->
-        <!-- <button type="button"
-            class="login-btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Login</button> -->
-        <div class="container h-full" id="logged-in-container">
-            <div class=" flex flex-col minw-360">
+    <div class="h-full">
+        <div class="wpercent-20 h-full auto-ml auto-mr" id="logged-in-container">
+            <div class="h-full justify-center flex flex-col">
                 <div class="py-25 pl-30  border-bottom">
                     <img height="40" class="" src="/images/nav_icon.png" alt="Salesken">
                 </div>
@@ -32,13 +31,13 @@
                             class="appearance-none border h-12 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none text-sm"
                             type="text" placeholder="Email" name="email">
                         <div class="relative-pos">
-
                             <label class="block text-black-26 text-sm font-medium pb-10 pt-20" for="password">
                                 Password
                             </label>
+
                             <input id="salesken-password"
                                 class=" appearance-none border h-12 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none pr-10 text-sm"
-                                type="password" placeholder="Password">
+                                style="position: relative;" type="password" placeholder="Password">
                             <button id="salesken-icon" class="eye-grey eye-icon focus:outline-none"></button>
                         </div>
                         <div class="flex pt-40 pb-40">
@@ -48,32 +47,34 @@
                                 LOGIN
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <div style="display: none;" class="container" id="logged-out-container">
-            <div class="py-20 pl-30  border-bottom">
-                <img src="/images/nav_icon.png" alt="Salesken" style="height:30px !important">
-            </div>
-            <div class="bg-f9f9f9">
-                <div class="flex align-items-middle pt-4 px-8">
-                    <div class="font-medium text-black-22 font-16 pr-2">Welcome </div>
-                    <div id="salesken-user-email" class="font-medium text-black-22 font-16 pr-2"></div>
+        <div style="display: none;" class="wpercent-20 h-full auto-ml auto-mr" id="logged-out-container">
+            <div class="h-full justify-center flex flex-col">
+                <div class="py-20 pl-30  border-bottom">
+                    <img src="/images/nav_icon.png" alt="Salesken" style="height:30px !important">
                 </div>
-                <div class="pl-8 text-sm font-light text-black-22">Thank you for installing our Salesken Extension.
-                </div>
-                <div class="flex py-25 px-8">
-                    <button id="logoutBtn" class="theme-color font-bold py-2 text-sm  focus:outline-none" type="button">
-                        Sign Out
-                    </button>
+                <div class="bg-f9f9f9">
+                    <div class="flex align-items-middle pt-4 px-8">
+                        <div class="font-medium text-black-22 font-16 pr-2">Welcome </div>
+                        <div id="salesken-user-email" class="font-medium text-black-22 font-16 pr-2"></div>
+                    </div>
+                    <div class="pl-8 text-sm font-light text-black-22">Thank you for installing our Salesken Extension.
+                    </div>
+                    <div class="flex py-25 px-8">
+                        <button id="logoutBtn" class="theme-color font-bold py-2 text-sm  focus:outline-none"
+                            type="button">
+                            Sign Out
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
         <script src="../constants.js" type="module"></script>
-        <script src='popup.js' type="module"></script>
+        <script src='../popup/popup.js' type="module"></script>
 </body>
 
 </html>

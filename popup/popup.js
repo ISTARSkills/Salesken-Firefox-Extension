@@ -6,8 +6,15 @@
 var config = {
     "host": "https://api.talentify.in:8443",
     "socketurl": "wss://api.talentify.in:8443/cueSubscriber/userId"
-  }
+}
 console.log(config);
+
+
+document.getElementById("salesken-password").onkeyup = function (e) {
+    if (e.keyCode === 13) {
+        document.getElementById("loginBtn").click();
+    }
+}
 document.getElementById("loginBtn").addEventListener("click", () => {
 
     let email = document.getElementById("salesken-email");
@@ -41,10 +48,10 @@ document.getElementById("loginBtn").addEventListener("click", () => {
                 email: data.email,
                 id: data.id
             }
-            chrome.storage.sync.set({ "userid": data.id });
-            chrome.storage.sync.set({ "loggedIn": true });
-            chrome.storage.sync.set({ "userObj": userObject });
-            chrome.runtime.sendMessage({ "loggedIn": true, "userObject": userObject });
+            browser.storage.sync.set({ "userid": data.id });
+            browser.storage.sync.set({ "loggedIn": true });
+            browser.storage.sync.set({ "userObj": userObject });
+            browser.runtime.sendMessage({ "loggedIn": true, "userObject": userObject });
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
@@ -96,24 +103,24 @@ document.getElementById("salesken-password").addEventListener("keyup", () => {
 });
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
-    //chrome.storage.sync.set({ "userid": "" });
+    //browser.storage.sync.set({ "userid": "" });
 
-    chrome.storage.sync.remove("userid");
-    chrome.storage.sync.remove("userObj");
-    chrome.storage.sync.set({ "loggedIn": false });
-    chrome.runtime.sendMessage({ loggedIn: false });
+    browser.storage.sync.remove("userid");
+    browser.storage.sync.remove("userObj");
+    browser.storage.sync.set({ "loggedIn": false });
+    browser.runtime.sendMessage({ loggedIn: false });
     window.close()
 });
 
 window.addEventListener("load", () => {
     console.log("loaded");
-    chrome.storage.sync.get(['loggedIn', 'userid', 'userObj'], (result) => {
+    browser.storage.sync.get(['loggedIn', 'userid', 'userObj'], (result) => {
         console.log(result);
         if (result.userid || result.loggedIn) {
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = result.userObj.name + " !";
-           // document.getElementById("sken-username").innerText=result.userObj.name;
+            // document.getElementById("sken-username").innerText=result.userObj.name;
 
 
         } else {
@@ -154,8 +161,8 @@ function isEmailValid(email) {
 //     var left = (screen.width / 2) - (w / 2);
 //     var top = (screen.height / 2) - (h / 2);
 
-//     chrome.windows.create({
-//         url: chrome.runtime.getURL("../login/login.html"),
+//     browser.windows.create({
+//         url: browser.runtime.getURL("../login/login.html"),
 //         type: "popup",
 //         width: w, 
 //         height: h, 
