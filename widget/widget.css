@@ -1,11 +1,11 @@
-#mydiv {
+#salesken_div {
     position: fixed;
     z-index: 999999;
     text-align: center;
   
   }
   
-  #mydivheader {
+  #salesken_divheader {
     cursor: move;
     z-index: 99999999;
     

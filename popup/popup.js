@@ -15,6 +15,27 @@ document.getElementById("salesken-password").onkeyup = function (e) {
         document.getElementById("loginBtn").click();
     }
 }
+
+window.addEventListener("load", () => {
+    console.log("loaded");
+    chrome.storage.sync.get('saleskenobj', (result) => {
+        var saleskenobj = result.saleskenobj;
+        if (saleskenobj.userObject) {
+            document.getElementById("logged-out-container").style.display = "block";
+            document.getElementById("logged-in-container").style.display = "none";
+            document.getElementById("salesken-user-email").innerText = saleskenobj.userObject.name + " !";
+            // document.getElementById("sken-username").innerText=result.userObj.name;
+
+
+        } else {
+            document.getElementById("logged-in-container").style.display = "block";
+            document.getElementById("logged-out-container").style.display = "none";
+        }
+    });
+});
+
+
+
 document.getElementById("loginBtn").addEventListener("click", () => {
 
     let email = document.getElementById("salesken-email");
@@ -48,10 +69,11 @@ document.getElementById("loginBtn").addEventListener("click", () => {
                 email: data.email,
                 id: data.id
             }
-            browser.storage.sync.set({ "userid": data.id });
-            browser.storage.sync.set({ "loggedIn": true });
-            browser.storage.sync.set({ "userObj": userObject });
-            browser.runtime.sendMessage({ "loggedIn": true, "userObject": userObject });
+            // storePopup("loggedIn", true);
+            //storePopup("userObj", userObject);
+
+
+            chrome.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
@@ -64,6 +86,12 @@ document.getElementById("loginBtn").addEventListener("click", () => {
     }
 
 
+});
+
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    chrome.runtime.sendMessage({ "action": "logout" });
+    window.close()
 });
 
 document.getElementById("salesken-icon").addEventListener("click", () => {
@@ -102,33 +130,6 @@ document.getElementById("salesken-password").addEventListener("keyup", () => {
     }
 });
 
-document.getElementById("logoutBtn").addEventListener("click", () => {
-    //browser.storage.sync.set({ "userid": "" });
-
-    browser.storage.sync.remove("userid");
-    browser.storage.sync.remove("userObj");
-    browser.storage.sync.set({ "loggedIn": false });
-    browser.runtime.sendMessage({ loggedIn: false });
-    window.close()
-});
-
-window.addEventListener("load", () => {
-    console.log("loaded");
-    browser.storage.sync.get(['loggedIn', 'userid', 'userObj'], (result) => {
-        console.log(result);
-        if (result.userid || result.loggedIn) {
-            document.getElementById("logged-out-container").style.display = "block";
-            document.getElementById("logged-in-container").style.display = "none";
-            document.getElementById("salesken-user-email").innerText = result.userObj.name + " !";
-            // document.getElementById("sken-username").innerText=result.userObj.name;
-
-
-        } else {
-            document.getElementById("logged-in-container").style.display = "block";
-            document.getElementById("logged-out-container").style.display = "none";
-        }
-    });
-});
 
 function validateEmailPassword(data) {
     let email = document.getElementById("salesken-email");
@@ -154,20 +155,5 @@ function isEmailValid(email) {
 }
 
 
-// var login = document.getElementsByClassName("login-btn")[0].addEventListener("click", () => {
 
-//     var w = 400;
-//     var h = 550;
-//     var left = (screen.width / 2) - (w / 2);
-//     var top = (screen.height / 2) - (h / 2);
-
-//     browser.windows.create({
-//         url: browser.runtime.getURL("../login/login.html"),
-//         type: "popup",
-//         width: w, 
-//         height: h, 
-//         left: left, 
-//         top: top
-//     });
-// });
 
