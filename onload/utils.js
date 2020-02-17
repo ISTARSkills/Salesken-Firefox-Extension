@@ -2,7 +2,7 @@
 /* this function will check all properties store in storage and maintains the state of the extension */
 var welocomeCueHtml = `
     <div class="sken-cue-card">
-        <div class="d-flex flex-column">
+        <div class="salesken-flex salesken-flex-column">
             <div class="sken-cue-title"> Welcome to Salesken!</div>
             <div class="sken-cue-text">Want to help every sales agent like a <b>champion !</b> </div>
             <div class="">
@@ -22,7 +22,7 @@ function loadExtensionState() {
 }
 
 function updateUIPosition() {
-    chrome.storage.sync.get('saleskenobj', (res) => {
+    browser.storage.sync.get('saleskenobj', (res) => {
         console.log('widget ui');
         console.log(res)
 
@@ -38,7 +38,7 @@ function updateUIPosition() {
 }
 
 function isCuePopUpShown() {
-    chrome.storage.sync.get('saleskenobj', (res) => {
+    browser.storage.sync.get('saleskenobj', (res) => {
         console.log('ispopupOpen')
         console.log(res);
         if (res.saleskenobj.ispopupOpen) {
@@ -55,7 +55,7 @@ function isCuePopUpShown() {
 
 
 function updateSignInOutBtn() {
-    chrome.storage.sync.get('saleskenobj', (result) => {
+    browser.storage.sync.get('saleskenobj', (result) => {
         console.log('update sign in')
         var saleskenobj = result.saleskenobj;
         console.log(saleskenobj)
@@ -78,7 +78,7 @@ function updateSignInOutBtn() {
 }
 
 function updateCues() {
-    chrome.storage.sync.get('saleskenobj', (result) => {
+    browser.storage.sync.get('saleskenobj', (result) => {
         console.log(result);
         emptyCueContainer();
         if (result.saleskenobj.cues) {
@@ -103,11 +103,10 @@ function emptyCueContainer() {
 
 function appendCue(msg) {
 
-    msg = JSON.parse(msg)
     let html = `
-    <div class="sken-cue-card d-flex">
-        <div class="d-flex flex-column">
-            <div class="sken-cue-time">${formatAMPM(new Date())}</div>
+    <div class="sken-cue-card salesken-flex">
+        <div class="salesken-flex salesken-flex-column">
+            <div class="sken-cue-time">${msg.time}</div>
             <div class="sken-cue-title">${msg.title}</div>
             <div class="sken-cue-text">${msg.text}</div>
         </div>
@@ -120,7 +119,7 @@ function appendCue(msg) {
     const ke = new KeyboardEvent("keyup", {
         bubbles: true, cancelable: true, keyCode: 13
     });
-    document.getElementsByClassName("sken-search-box-input")[0].dispatchEvent(ke);;
+    document.getElementById("sken-search-box-input").dispatchEvent(ke);;
 }
 
 
@@ -137,31 +136,31 @@ function formatAMPM(date) {
 }
 
 function updateSearch() {
-    document.getElementsByClassName("sken-search-box-input")[0].value = '';
+    document.getElementById("sken-search-box-input").value = '';
 
-    chrome.storage.sync.get('saleskenobj', (result) => {
+    browser.storage.sync.get('saleskenobj', (result) => {
         if (result.saleskenobj.searchkey) {
-            document.getElementsByClassName("sken-search-box-input")[0].value = result.saleskenobj.searchkey;
+            document.getElementById("sken-search-box-input").value = result.saleskenobj.searchkey;
             ;
         } else {
-            document.getElementsByClassName("sken-search-box-input")[0].value = '';
+            document.getElementById("sken-search-box-input").value = '';
 
         }
         const ke = new KeyboardEvent("keyup", {
             bubbles: true, cancelable: true, keyCode: 13
         });
-        document.getElementsByClassName("sken-search-box-input")[0].dispatchEvent(ke);
+        document.getElementById("sken-search-box-input").dispatchEvent(ke);
         console.log(result)
     })
 }
 
 function shouldSearchShow() {
-    chrome.storage.sync.get('saleskenobj', (result) => {
+    browser.storage.sync.get('saleskenobj', (result) => {
         if (result.saleskenobj.callstarted) {
             document.getElementsByClassName('sken-search-box-input')[0].style.display = "block";
         } else {
             document.getElementsByClassName('sken-search-box-input')[0].style.display = "none";
-            document.getElementsByClassName("sken-search-box-input")[0].value = "";
+            document.getElementById("sken-search-box-input").value = "";
             emptyCueContainer();
 
         }

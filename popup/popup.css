@@ -1,10 +1,10 @@
-
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 body{
-    width: 380px;
+    width: 350px;
+    font-family: 'Roboto', sans-serif;
     /* height: 200px; */
 }
 .salesken-alert{
-    width:100%;
     padding: 10px 20px;
     background: #fff5f6 !important;
     color: #e84c4c !important;
@@ -57,7 +57,7 @@ body{
     box-shadow: 0 10px 60px 0 rgba(0, 0, 0, 0.3);
 }
 .border-bottom{
-    border-bottom: 1px solid #ddd ;
+    border-bottom: 1px solid #ECECEC ;
 }
 .minw-360{
     min-width: 360px;
@@ -91,7 +91,7 @@ body{
 }
 .eye-icon{
     position: absolute;
-    top: 64%;
+    top: 62%;
     right: 4%;
     height: 24px;
     width: 24px;

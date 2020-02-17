@@ -18,7 +18,7 @@ document.getElementById("salesken-password").onkeyup = function (e) {
 
 window.addEventListener("load", () => {
     console.log("loaded");
-    chrome.storage.sync.get('saleskenobj', (result) => {
+    browser.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
         if (saleskenobj.userObject) {
             document.getElementById("logged-out-container").style.display = "block";
@@ -73,7 +73,7 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             //storePopup("userObj", userObject);
 
 
-            chrome.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
+            browser.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
@@ -90,7 +90,7 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
-    chrome.runtime.sendMessage({ "action": "logout" });
+    browser.runtime.sendMessage({ "action": "logout" });
     window.close()
 });
 

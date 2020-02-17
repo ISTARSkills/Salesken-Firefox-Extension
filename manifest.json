@@ -1,19 +1,19 @@
 {
     "name": "Salesken",
     "version": "1.3",
-    "description": "Chrome Extension for receiveing realtime cues",
+    "description": " Extension for receiveing realtime cues",
     "homepage_url": "https://salesken.ai/",
     "manifest_version": 2,
-    "icons": {
-        "16": "images/skenicon-16x16.png",
-        "32": "images/skenicon-32x32.png",
-        "48": "images/skenicon-48x48.png"
-    },
     "browser_specific_settings": {
         "gecko": {
             "id": "newsalesken@salesken.ai",
             "strict_min_version": "57.0a1"
         }
+    },
+    "icons": {
+        "16": "images/skenicon-16x16.png",
+        "32": "images/skenicon-32x32.png",
+        "48": "images/skenicon-48x48.png"
     },
     "background": {
         "scripts": [
@@ -48,7 +48,10 @@
     "web_accessible_resources": [
         "widget/widget.html",
         "images/app-icon(512x512).png",
-        "images/nav_icon.png"
+        "images/nav_icon.png",
+        "images/popup_background.svg",
+        "images/minimize.svg",
+        "images/close.svg"
     ],
     "options_ui": {
         "page": "options/options.html",

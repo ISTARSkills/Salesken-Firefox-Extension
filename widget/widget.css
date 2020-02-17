@@ -178,19 +178,19 @@
       margin-bottom: 20px;
   }
   
-  .d-flex {
+  .salesken-flex {
       display: flex;
   }
   
-  .flex-row {
+  .salesken-flex-row {
       flex-direction: row;
   }
   
-  .flex-column {
+  .salesken-flex-column {
       flex-direction: column;
   }
   
-  .align-center {
+  .salesken-align-center {
       align-items: center;
   }
   

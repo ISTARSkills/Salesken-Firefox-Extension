@@ -1,5 +1,5 @@
 
-fetch(chrome.extension.getURL("widget/widget.html"))
+fetch(browser.extension.getURL("widget/widget.html"))
     .then((response) => response.text())
     .then((result) => {
         var new_elem = document.createElement('div');
@@ -7,8 +7,18 @@ fetch(chrome.extension.getURL("widget/widget.html"))
         var something = document.querySelector('body').firstChild;
         document.querySelector('body').insertBefore(new_elem, something);
 
-        let iconUrl = chrome.extension.getURL("images/app-icon(512x512).png");
+        let iconUrl = browser.extension.getURL("images/app-icon(512x512).png");
         document.getElementById("skenicon").src = iconUrl;
+
+        let backgroundUrl = browser.extension.getURL("images/popup_background.svg");
+        document.getElementById("popup_background").src=backgroundUrl;
+
+        let minusUrl = browser.extension.getURL("images/minimize.svg");
+        document.getElementById("Minus_icon").src=minusUrl;
+
+        let closeUrl = browser.extension.getURL("images/close.svg");
+        document.getElementById("close_icon").src=closeUrl;
+
         loadExtensionState();
         addEventListnerForExtension();
         dragElement(document.getElementById("salesken_div"));
@@ -23,7 +33,14 @@ function updateCallEvent(isCallstarted) {
     }
 }
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+
+
+/* this is chrome listner for cues popup for updating sign in, getting realtime cues,updating search
+browser.runtime.onMessage recieve message from popup and backgroung js.
+From popup we are updating the login
+From background js we getting live cues and appending into the container
+*/
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log(message);
     console.log(sender);
 
@@ -58,12 +75,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 });
 
+/* end of  listner for cues popup for updating sign in, getting realtime cues,updating search */
 
+
+/* every storage variable  will be stored as property in  saleskenobj*/
 function store(propertyName, propertyValue) {
-    chrome.storage.sync.get('saleskenobj', (result) => {
+    browser.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
         saleskenobj[propertyName] = propertyValue;
-        chrome.storage.sync.set({ "saleskenobj": saleskenobj });
+        browser.storage.sync.set({ "saleskenobj": saleskenobj });
     });
 }
 

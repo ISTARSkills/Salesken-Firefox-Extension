@@ -1,95 +1,43 @@
 <div id="salesken_div">
-    <div class="sken-icon-draggable d-flex flex-column" id="salesken_divheader">
+    <div class="sken-icon-draggable salesken-flex salesken-flex-column" id="salesken_divheader">
         <img id="skenicon" class="skenicon icon-shadow" src="" alt="saleken" height="50" width="50">
         <div class="sken-chat-container" id="salesken-cue-container" style="display: block;">
-            <div class="sken-header d-flex align-center">
+            <div class="sken-header salesken-flex salesken-align-center">
                 <!-- <img src="" alt="salesken" id="sken-image"> -->
                 <div style="  width: 100%;">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="62" viewBox="0 0 333 62">
-                        <defs>
-                            <linearGradient id="linear-gradient" x1="1.124" x2=".282" y1="1.059" y2=".569"
-                                gradientUnits="objectBoundingBox">
-                                <stop offset="0" stop-color="#7e0947" />
-                                <stop offset="1" stop-color="#ed4d67" />
-                            </linearGradient>
-                            <clipPath id="clip-path">
-                                <path id="Path_3041" d="M12 0h309a12 12 0 0 1 12 12v50H0V12A12 12 0 0 1 12 0z"
-                                    style=" fill: url(#linear-gradient)" data-name="Path 3041"
-                                    transform="translate(2691 -2049)" />
-                            </clipPath>
-                        </defs>
-                        <g id="Group_6848" data-name="Group 6848" transform="translate(-2691 2049)">
-                            <path id="Path_2603" d="M12 0h309a12 12 0 0 1 12 12v50H0V12A12 12 0 0 1 12 0z"
-                                style=" fill: url(#linear-gradient)" data-name="Path 2603"
-                                transform="translate(2691 -2049)" />
-                            <g id="Mask_Group_23" style="clip-path: url(#clip-path)" data-name="Mask Group 23">
-                                <rect id="Rectangle_1748" width="159" height="159" style="fill: #fff"
-                                    data-name="Rectangle 1748" rx="29" transform="rotate(45 3950.617 2228.04)" />
-                            </g>
-                            <g id="Icon" transform="translate(2352.59 -2342.063)">
-                                <g id="Group_620" data-name="Group 620" transform="translate(358.409 308.063)">
-                                    <path id="Path_357"
-                                        d="M474.036 499.32v8.98a3.56 3.56 0 0 1-3.56 3.56h-20.71l5.427-5.391h11.027c1.7 0 2.486-1.4 2.486-3.092v-4.057z"
-                                        data-name="Path 357" transform="translate(-442.202 -483.485)" />
-                                    <path id="Path_358"
-                                        d="M386.682 308.063h-24.713a3.56 3.56 0 0 0-3.56 3.56v10.564h5.3V315.8a2.409 2.409 0 0 1 2.409-2.409H382.5a2.409 2.409 0 0 1 2.409 2.409v1.079h5.33v-5.257a3.56 3.56 0 0 0-3.557-3.559z"
-                                        data-name="Path 358" transform="translate(-358.409 -308.063)" />
-                                    <path id="Path_359"
-                                        d="M382.352 414.937l-22.6 22.7a.749.749 0 0 1-1.286-.554l-.058-15.126h5.276v4.127l11.167-11.148z"
-                                        style="fill: #ed4d67;font-size: 15px;font-family:'Roboto', sans-serif;"
-                                        data-name="Path 359" transform="translate(-358.409 -406.089)" />
-                                </g>
-                                <text id="salesken" style="fill: #eb384f" transform="translate(398.941 326.461)">
-                                    <tspan x="0" y="0" style="fill: #000;">sales</tspan>
-                                    <tspan y="0" style="fill:#eb384f;">ken</tspan>
-                                </text>
-                            </g>
-                        </g>
-                    </svg>
+                    <img src="" id="popup_background"  height="62" width="333"/>
                 </div>
 
 
-                <div class="d-flex flex-row ml-auto align-center"
+                <div class="salesken-flex salesken-flex-row ml-auto salesken-align-center"
                     style="margin-right:20px;z-index: 100;position: absolute;right:0">
-                    <button type="button" id="sken-container-minimise" class="sken-button-transparent">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Minus_icon" width="20" height="20"
-                            data-name="Minus icon" viewBox="0 0 24 24">
-                            <path id="Rectangle_936" d="M0 0h24v24H0z" style="fill:none" data-name="Rectangle 936" />
-                            <path id="XMLID_1425_"
-                                d="M254.27 931.87h-11.585a1.185 1.185 0 1 1 0-2.37h11.585a1.185 1.185 0 0 1 0 2.37z"
-                                class="cls-2" style="fill:#fff" transform="translate(-236.501 -918.5)" />
-                        </svg>
-                    </button>
-                    <button type="button" id="sken-container-close" class="sken-button-transparent">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="Group_6537" width="20" height="20"
-                            data-name="Group 6537" viewBox="0 0 24 24">
-                            <path id="Path_37"
-                                d="M2533.828 1156.468a.961.961 0 0 1-1.36 1.36l-3.914-3.914-3.913 3.914a.961.961 0 0 1-1.36-1.36l3.914-3.913-3.914-3.914a.961.961 0 0 1 1.36-1.36l3.913 3.913 3.914-3.913a.961.961 0 0 1 1.36 1.36l-3.914 3.914z"
-                                style="fill:#fff" data-name="Path 37" transform="translate(-2516.555 -1140.555)" />
-                            <path id="Rectangle_936" d="M0 0h24v24H0z" style="fill:none" data-name="Rectangle 936" />
-                        </svg>
-                    </button>
+                    <div  id="sken-container-minimise" class="sken-button-transparent">
+                        <img src="" id="Minus_icon"  height="20" width="20" />
+                    </div>
+                    <div id="sken-container-close" class="sken-button-transparent">
+                        <img src="" id="close_icon"  height="20" width="20" />
+                    </div>
                 </div>
             </div>
 
 
             <div id="sken-login-logout" class="sken-login-logout">
                 <div id="sken-email-id"></div>
-                <button type="button" id="sken-sign-in-btn" style="display: none;"
-                    class="sken-button-transparent sken-sign-in-out-btn ml-auto">Sign In</button>
-                <button type="button" id="sken-sign-out-btn" style="display: none;"
-                    class="sken-button-transparent sken-sign-in-out-btn ml-auto">Sign Out</button>
+                <div  id="sken-sign-in-btn" style="display: none;"
+                    class="sken-button-transparent sken-sign-in-out-btn ml-auto">Sign In</div>
+                <div id="sken-sign-out-btn" style="display: none;"
+                    class="sken-button-transparent sken-sign-in-out-btn ml-auto">Sign Out</div>
             </div>
 
             <div class="sken-searchbar" style="padding: 10px 20px;">
-                <input type="search" class="sken-search-box-input" placeholder="Search" style="display:none">
+                <input type="search" id="sken-search-box-input" class="sken-search-box-input" placeholder="Search" style="display:none">
             </div>
 
             <div id="sken-cues-body" class="sken-cues-body">
 
                 <div class="sken-cue-card">
 
-                    <div class="d-flex flex-column">
+                    <div class="salesken-flex salesken-flex-column">
                         <div class="sken-cue-time">11:40 AM</div>
                         <div class="sken-cue-title"> Welcome to Salesken!</div>
                         <div class="sken-cue-text">Want to help every sales agent like a <b>champion !</b> </div>
