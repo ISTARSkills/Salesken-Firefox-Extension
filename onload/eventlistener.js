@@ -8,19 +8,26 @@ function addEventListnerForExtension() {
         console.log(e.clientX);
         var height = window.innerHeight
         var width = window.innerWidth
-        var salesken_div_height=document.getElementById('salesken_div').offsetHeight;
-        var salesken_div_width=document.getElementById('salesken_div').offsetWidth;
+        var salesken_div_height = document.getElementById('salesken_div').offsetHeight;
+        var salesken_div_width = document.getElementById('salesken_div').offsetWidth;
         if (e.clientX > (width - salesken_div_width)) {
             document.getElementById('salesken_div').style.left = width - salesken_div_width - 20 + 'px'
         }
-        if (e.clientY > (height -salesken_div_height)) {
+        if (e.clientY > (height - salesken_div_height)) {
             document.getElementById('salesken_div').style.top = height - salesken_div_height + 'px'
         }
         store("divposition", {
             position_x: document.getElementById('salesken_div').offsetLeft,
             position_y: document.getElementById('salesken_div').offsetTop
         });
-        store("ispopupOpen", true);
+        console.log(document.getElementById('salesken_div').offsetLeft);
+
+        setTimeout(function () {
+            store("ispopupOpen", true);
+
+
+        }, 300);
+
 
     });
     /* end of salesken logo icon click to open cues pop window */

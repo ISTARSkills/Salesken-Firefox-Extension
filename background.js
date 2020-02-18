@@ -59,7 +59,7 @@ function connectWebsocket(userId) {
   websocket.onmessage = function (e) {
     console.log('Message:', e.data);
     let msg = JSON.parse(e.data);
-    msg.time=formatAMPM(new Date())
+    msg.time = formatAMPM(new Date())
     if (msg.action) {
       if (msg.action == "CallStarted") {
         storeBackground("callstarted", true, "");
@@ -69,7 +69,7 @@ function connectWebsocket(userId) {
     } else {
       browser.storage.sync.get('saleskenobj', (result) => {
         if (result.saleskenobj && result.saleskenobj.cues) {
-          e.data=JSON.stringify(msg)
+          e.data = JSON.stringify(msg)
           let cuesResult = result.saleskenobj.cues;
           cuesResult.push(msg);
 

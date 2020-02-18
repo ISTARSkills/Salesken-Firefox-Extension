@@ -7,17 +7,31 @@ fetch(browser.extension.getURL("widget/widget.html"))
         var something = document.querySelector('body').firstChild;
         document.querySelector('body').insertBefore(new_elem, something);
 
-        let iconUrl = browser.extension.getURL("images/app-icon(512x512).png");
-        document.getElementById("skenicon").src = iconUrl;
+        let iconUrl = browser.extension.getURL("images/app_icon_512.png");
+        document.getElementById("skenicon").style.backgroundImage = "url(\'" + iconUrl + "\')";
+        document.getElementById("skenicon").style.height = "50px";
+        document.getElementById("skenicon").style.width = "50px";
+        document.getElementById("skenicon").style.backgroundSize = "cover";
+        document.getElementById("skenicon").style.backgroundRepeat = "no-repeat";
+
 
         let backgroundUrl = browser.extension.getURL("images/popup_background.svg");
-        document.getElementById("popup_background").src=backgroundUrl;
+        document.getElementById("popup_background").style.backgroundImage = "url(\'" + backgroundUrl + "\')";
+        document.getElementById("popup_background").style.backgroundRepeat = "no-repeat";
+
 
         let minusUrl = browser.extension.getURL("images/minimize.svg");
-        document.getElementById("Minus_icon").src=minusUrl;
+        document.getElementById("sken-container-minimise").style.backgroundImage = "url(\'" + minusUrl + "\')";
+        document.getElementById("sken-container-minimise").style.height = "20px";
+        document.getElementById("sken-container-minimise").style.width = "20px";
+        document.getElementById("sken-container-minimise").style.backgroundRepeat = "no-repeat";
+
 
         let closeUrl = browser.extension.getURL("images/close.svg");
-        document.getElementById("close_icon").src=closeUrl;
+        document.getElementById("sken-container-close").style.backgroundImage = "url(\'" + closeUrl + "\')";
+        document.getElementById("sken-container-close").style.height = "20px";
+        document.getElementById("sken-container-close").style.width = "20px";
+        document.getElementById("sken-container-close").style.backgroundRepeat = "no-repeat";
 
         loadExtensionState();
         addEventListnerForExtension();

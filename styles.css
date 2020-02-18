@@ -125,3 +125,6 @@ body {
 	padding-left: 2rem;
 	padding-right: 2rem
 }
+.cursor-pointer{
+	cursor: pointer;
+}

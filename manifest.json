@@ -47,7 +47,7 @@
     },
     "web_accessible_resources": [
         "widget/widget.html",
-        "images/app-icon(512x512).png",
+        "images/app_icon_512.png",
         "images/nav_icon.png",
         "images/popup_background.svg",
         "images/minimize.svg",

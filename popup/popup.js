@@ -18,6 +18,19 @@ document.getElementById("salesken-password").onkeyup = function (e) {
 
 window.addEventListener("load", () => {
     console.log("loaded");
+    let salesken_icon = browser.extension.getURL("images/nav_icon.png");
+
+    document.getElementById("salesken-nav-icon-login").style.backgroundImage = "url(\'" + salesken_icon + "\')";
+    document.getElementById("salesken-nav-icon-login").style.backgroundRepeat = "no-repeat";
+    document.getElementById("salesken-nav-icon-login").style.backgroundPositionY = "center";
+    document.getElementById("salesken-nav-icon-login").style.backgroundPositionX = "30px";
+    document.getElementById("salesken-nav-icon-login").style.height = "40px";
+
+    document.getElementById("salesken-nav-icon-logout").style.backgroundImage = "url(\'" + salesken_icon + "\')";
+    document.getElementById("salesken-nav-icon-logout").style.backgroundRepeat = "no-repeat";
+    document.getElementById("salesken-nav-icon-logout").style.backgroundPositionY = "center";
+    document.getElementById("salesken-nav-icon-logout").style.backgroundSize = "contain";
+    document.getElementById("salesken-nav-icon-logout").style.height = "30px";
     browser.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
         if (saleskenobj.userObject) {

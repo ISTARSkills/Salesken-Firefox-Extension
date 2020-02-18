@@ -16,8 +16,7 @@
     <div class="h-full">
         <div class="wpercent-20 h-full auto-ml auto-mr" id="logged-in-container">
             <div class="h-full justify-center flex flex-col">
-                <div class="py-25 pl-30  border-bottom">
-                    <img height="40" class="" src="/images/nav_icon.png" alt="Salesken">
+                <div class="py-25 pl-30  border-bottom" id="salesken-nav-icon-login">
                 </div>
                 <div class="bg-f9f9f9">
                     <div id="salesken-alert" class="salesken-alert" style="visibility:hidden;">
@@ -38,11 +37,12 @@
                             <input id="salesken-password"
                                 class=" appearance-none border-input h-50 w-95 pl-12 text-gray-700 leading-tight focus:outline-none text-sm"
                                 style="position: relative;" type="password" placeholder="Password">
-                            <div id="salesken-icon" class="eye-grey eye-icon focus:outline-none display-center"></div>
+                            <div id="salesken-icon"
+                                class="eye-grey eye-icon focus:outline-none display-center cursor-pointer"></div>
                         </div>
                         <div class="flex pt-40 pb-40">
                             <div id="loginBtn"
-                                class=" bg-red-600 hover:bg-red-900 text-white font-bold px-16 h-40 focus:outline-none text-sm w-full display-center" >
+                                class=" bg-red-600 hover:bg-red-900 text-white font-bold px-16 h-40 focus:outline-none text-sm w-full display-center cursor-pointer">
                                 LOGIN
                             </div>
                         </div>
@@ -53,21 +53,21 @@
 
         <div style="display: none;" class="wpercent-20 h-full auto-ml auto-mr" id="logged-out-container">
             <div class="h-full justify-center flex flex-col">
-                <div class="py-20 pl-30  border-bottom">
-                    <img src="/images/nav_icon.png" alt="Salesken" style="height:30px !important">
+                <div class="py-20 pl-30  border-bottom" style="height:30px !important">
+                    <div id="salesken-nav-icon-logout"></div>
                 </div>
                 <div class="bg-f9f9f9">
                     <div class="flex align-items-middle pt-16 px-32">
                         <div class="font-medium text-black-22 font-16 pr-10">Welcome </div>
-                        <div id="salesken-user-email" class="font-medium text-black-22 font-16 pr-10"></div>
+                        <div id="salesken-user-email" class="font-medium text-black-22 font-16 pr-10   "></div>
                     </div>
-                    <div class="pl-8 text-sm font-light text-black-22">Thank you for installing our Salesken Extension.
+                    <div class="pl-32 text-sm font-light text-black-22">Thank you for installing our Salesken Extension.
                     </div>
-                    <div class="flex py-25 px-8">
-                        <div id="logoutBtn" class="theme-color font-bold py-10 text-sm  focus:outline-none"
-                            type="button">
+                    <div class="flex py-25 px-32">
+                        <div id="logoutBtn"
+                            class="theme-color font-bold py-10 text-sm  focus:outline-none cursor-pointer">
                             Sign Out
-                    </div>
+                        </div>
                     </div>
                 </div>
             </div>
