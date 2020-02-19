@@ -95,8 +95,8 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
     
-    document.getElementById("logged-out-container").style.display = "block";
-    document.getElementById("logged-in-container").style.display = "none";
+    document.getElementById("logged-out-container").style.display = "none";
+    document.getElementById("logged-in-container").style.display = "block";
     chrome.runtime.sendMessage({ "action": "logout" });
     //window.close()
 });
