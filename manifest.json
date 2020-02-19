@@ -1,7 +1,7 @@
 {
     "name": "Salesken",
-    "version": "1.0",
-    "description": "Chrome Extension for receiveing realtime cues",
+    "version": "1.1",
+    "description": "Extension for receiveing realtime cues",
     "homepage_url": "https://salesken.ai/",
     "manifest_version": 2,
     "browser_specific_settings": {
@@ -52,10 +52,8 @@
         "images/popup_background.svg",
         "images/minimize.svg",
         "images/close.svg",
+        "images/welcome.svg",
         "fonts/*.ttf"
     ],
-    "options_ui": {
-        "page": "options/options.html",
-        "browser_style": false
-    }
+    "options_page": "options/options.html"
 }

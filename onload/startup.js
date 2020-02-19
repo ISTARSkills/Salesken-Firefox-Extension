@@ -1,5 +1,5 @@
 
-fetch(chrome.extension.getURL("widget/widget.html"))
+fetch(browser.extension.getURL("widget/widget.html"))
     .then((response) => response.text())
     .then((result) => {
         var new_elem = document.createElement('div');
@@ -7,7 +7,7 @@ fetch(chrome.extension.getURL("widget/widget.html"))
         var something = document.querySelector('body').firstChild;
         document.querySelector('body').insertBefore(new_elem, something);
 
-        let iconUrl = chrome.extension.getURL("images/app_icon_512.png");
+        let iconUrl = browser.extension.getURL("images/app_icon_512.png");
         document.getElementById("skenicon").style.backgroundImage = "url(\'" + iconUrl + "\')";
         document.getElementById("skenicon").style.height = "50px";
         document.getElementById("skenicon").style.width = "50px";
@@ -15,19 +15,19 @@ fetch(chrome.extension.getURL("widget/widget.html"))
         document.getElementById("skenicon").style.backgroundRepeat = "no-repeat";
 
 
-        let backgroundUrl = chrome.extension.getURL("images/popup_background.svg");
+        let backgroundUrl = browser.extension.getURL("images/popup_background.svg");
         document.getElementById("popup_background").style.backgroundImage = "url(\'" + backgroundUrl + "\')";
         document.getElementById("popup_background").style.backgroundRepeat = "no-repeat";
 
 
-        let minusUrl = chrome.extension.getURL("images/minimize.svg");
+        let minusUrl = browser.extension.getURL("images/minimize.svg");
         document.getElementById("sken-container-minimise").style.backgroundImage = "url(\'" + minusUrl + "\')";
         document.getElementById("sken-container-minimise").style.height = "20px";
         document.getElementById("sken-container-minimise").style.width = "20px";
         document.getElementById("sken-container-minimise").style.backgroundRepeat = "no-repeat";
 
 
-        let closeUrl = chrome.extension.getURL("images/close.svg");
+        let closeUrl = browser.extension.getURL("images/close.svg");
         document.getElementById("sken-container-close").style.backgroundImage = "url(\'" + closeUrl + "\')";
         document.getElementById("sken-container-close").style.height = "20px";
         document.getElementById("sken-container-close").style.width = "20px";
@@ -50,11 +50,11 @@ function updateCallEvent(isCallstarted) {
 
 
 /* this is chrome listner for cues popup for updating sign in, getting realtime cues,updating search
-chrome.runtime.onMessage recieve message from popup and backgroung js.
+browser.runtime.onMessage recieve message from popup and backgroung js.
 From popup we are updating the login
 From background js we getting live cues and appending into the container
 */
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log(message);
     console.log(sender);
 
@@ -71,6 +71,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             loadExtensionState();
             break;
         case "callstarted":
+            if(message.senddata){
+
+            }else{
+                store("cues", null);
+                setTimeout(()=>{
+                    browser.storage.sync.get('saleskenobj', (result) => {
+                        console.log(result);
+                    });
+                },400)
+                
+            }
             shouldSearchShow();
             break;
         case "updatelogin":
@@ -94,10 +105,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 /* every storage variable  will be stored as property in  saleskenobj*/
 function store(propertyName, propertyValue) {
-    chrome.storage.sync.get('saleskenobj', (result) => {
+    browser.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
         saleskenobj[propertyName] = propertyValue;
-        chrome.storage.sync.set({ "saleskenobj": saleskenobj });
+        browser.storage.sync.set({ "saleskenobj": saleskenobj });
     });
 }
 

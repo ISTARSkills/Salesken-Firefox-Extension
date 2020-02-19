@@ -151,7 +151,7 @@ function addEventListnerForExtension() {
 
     /* start of sign out button click event */
     document.getElementById("sken-sign-out-btn").addEventListener("click", (event) => {
-        chrome.runtime.sendMessage({ "action": "logout" });
+        browser.runtime.sendMessage({ "action": "logout" });
     });
     /* end of sign out button click event*/
 
@@ -159,7 +159,7 @@ function addEventListnerForExtension() {
 
     /* start of sign In button click event*/
     document.getElementById("sken-sign-in-btn").addEventListener("click", (event) => {
-        chrome.runtime.sendMessage({ "action": "openoption" });
+        browser.runtime.sendMessage({ "action": "openoption" });
     });
     /* end of sign In button click event */
 
