@@ -80,14 +80,11 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
-            var myEle = document.getElementById("isOptionPageInput");
-            if (myEle) {
-                window.close();
-            }
+           
 
 
         }).catch((error) => {
-            console.error('Error:', error);
+          //  console.error('Error:', error);
             alert.style.visibility = 'visible'
         });
     }
@@ -97,8 +94,11 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
+    
+    document.getElementById("logged-out-container").style.display = "block";
+    document.getElementById("logged-in-container").style.display = "none";
     chrome.runtime.sendMessage({ "action": "logout" });
-    window.close()
+    //window.close()
 });
 
 document.getElementById("salesken-icon").addEventListener("click", () => {

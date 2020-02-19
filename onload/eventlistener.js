@@ -5,7 +5,7 @@ function addEventListnerForExtension() {
     document.getElementById("skenicon").addEventListener("click", function (e) {
         document.getElementById("salesken-cue-container").style.display = "block";
         document.getElementById("skenicon").style.display = "none";
-        console.log(e.clientX);
+       // console.log(e.clientX);
         var height = window.innerHeight
         var width = window.innerWidth
         var salesken_div_height=document.getElementById('salesken_div').offsetHeight;
@@ -20,7 +20,7 @@ function addEventListnerForExtension() {
             x: document.getElementById('salesken_div').offsetLeft/window.innerWidth,
             y: document.getElementById('salesken_div').offsetTop/window.innerHeight
         }); 
-        console.log(document.getElementById('salesken_div').offsetLeft);
+        //console.log(document.getElementById('salesken_div').offsetLeft);
 
         setTimeout(function(){ 
             store("ispopupOpen", true);
@@ -89,7 +89,7 @@ function addEventListnerForExtension() {
 
     /* start of search input clear all event capture */
     document.getElementById("sken-search-box-input").addEventListener("search", (e) => {
-        console.log('searxh event', e.target.value)
+       // console.log('searxh event', e.target.value)
         store("searchkey", '')
 
         const ke = new KeyboardEvent("keyup", {
@@ -104,10 +104,10 @@ function addEventListnerForExtension() {
     /* start of search input text change event*/
     document.getElementById("sken-search-box-input").addEventListener("keyup", (e) => {
         e.stopPropagation();
-        console.log(e.target.value);
+        //console.log(e.target.value);
         let value = e.target.value;
         store("searchkey", e.target.value)
-        console.log("asdasdsdasad" + value)
+        //console.log("asdasdsdasad" + value)
         if (value) {
             let nodes = document.getElementById("sken-cues-body").childNodes;
 
@@ -124,7 +124,7 @@ function addEventListnerForExtension() {
                 if (child.innerText) {
                     if (child.innerText.trim().toLowerCase().indexOf(value.toLowerCase()) > -1) {
                         child.style.display = "block";
-                        console.log(child.innerText)
+                        //console.log(child.innerText)
                         //highlight(value.toLowerCase(),child)
                     } else {
                         child.style.display = "none";

@@ -55,8 +55,8 @@ From popup we are updating the login
 From background js we getting live cues and appending into the container
 */
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log(message);
-    console.log(sender);
+    //console.log(message);
+    //console.log(sender);
 
     switch (message.action) {
         case "cues":
@@ -75,11 +75,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
             }else{
                 store("cues", null);
-                setTimeout(()=>{
-                    chrome.storage.sync.get('saleskenobj', (result) => {
-                        console.log(result);
-                    });
-                },400)
+               
                 
             }
             shouldSearchShow();

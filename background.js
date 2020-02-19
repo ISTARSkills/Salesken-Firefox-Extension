@@ -5,7 +5,7 @@ var config = {
 
 var websocket = null;
 chrome.runtime.onInstalled.addListener(function () {
-  console.log("Installed salesken");
+  //console.log("Installed salesken");
   chrome.storage.sync.remove("saleskenobj");
   chrome.storage.sync.set({ "saleskenobj": {} });
 });
@@ -13,14 +13,12 @@ chrome.runtime.onInstalled.addListener(function () {
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    console.log(sender.tab ?
-      "from a content script:" + sender.tab.url :
-      "from the extension");
-    console.log(request)
-    console.log(sender)
+   // console.log(sender.tab ? "from a content script:" + sender.tab.url :"from the extension");
+    //console.log(request)
+   // console.log(sender)
     switch (request.action) {
       case "loggedIn":
-        console.log('i m in login')
+       // console.log('i m in login')
         connectWebsocket(request.userObject.id);
         storeBackground("userObject", request.userObject, "");
         break
@@ -50,14 +48,14 @@ function connectWebsocket(userId) {
   websocket = new WebSocket(config.socketurl.replace('userId', userId));
   websocket.onopen = function () {
     // subscribe to some channels
-    console.log("connection opened");
+    //console.log("connection opened");
 
     // /websocket.send("Hello");
 
   };
 
   websocket.onmessage = function (e) {
-    console.log('Message:', e.data);
+    //console.log('Message:', e.data);
     let msg = JSON.parse(e.data);
     msg.time=formatAMPM(new Date())
     if (msg.action) {
@@ -106,9 +104,9 @@ function connectWebsocket(userId) {
 function storeBackground(propertyName, propertyValue, incomingdata) {
   chrome.storage.sync.get('saleskenobj', (result) => {
     var saleskenobj = result.saleskenobj;
-    console.log('bg bg bg')
+   // console.log('bg bg bg')
 
-    console.log(saleskenobj)
+    //console.log(saleskenobj)
     saleskenobj[propertyName] = propertyValue;
     chrome.storage.sync.set({ "saleskenobj": saleskenobj }, function () {
       chrome.tabs.query({}, function (tabs) {
