@@ -7,7 +7,7 @@ var config = {
     "host": "https://api.talentify.in:8443",
     "socketurl": "wss://api.talentify.in:8443/cueSubscriber/userId"
 }
-//console.log(config);
+console.log(config);
 
 
 document.getElementById("salesken-password").onkeyup = function (e) {
@@ -17,11 +17,11 @@ document.getElementById("salesken-password").onkeyup = function (e) {
 }
 
 window.addEventListener("load", () => {
-    //console.log("loaded");
-    let salesken_icon = browser.extension.getURL("images/nav_icon.png");
+    console.log("loaded");
+    let salesken_icon = chrome.extension.getURL("images/nav_icon.png");
 
 
-    browser.storage.sync.get('saleskenobj', (result) => {
+    chrome.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
         if (saleskenobj.userObject) {
             document.getElementById("logged-out-container").style.display = "block";
@@ -57,13 +57,13 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             body: JSON.stringify(data)
         }).then((response) => {
             if (response.status == 200) {
-                //console.log(response)
+                console.log(response)
                 return response.json();
             } else {
-                //console.log("Unauthorized");
+                console.log("Unauthorized");
             }
         }).then((data) => {
-            //console.log(data);
+            console.log(data);
             let userObject = {
                 name: data.name,
                 profileImage: data.profileImage,
@@ -76,7 +76,7 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             //storePopup("userObj", userObject);
 
 
-            browser.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
+            chrome.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
@@ -97,7 +97,7 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
-    browser.runtime.sendMessage({ "action": "logout" });
+    chrome.runtime.sendMessage({ "action": "logout" });
     window.close()
 });
 
