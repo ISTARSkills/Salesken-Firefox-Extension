@@ -10,16 +10,15 @@
     z-index: 99999999 !important;
     
   }
-  
   @font-face {
     font-family: 'salesken-medium';
-    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Roboto-Medium.ttf');
+    src: url(../fonts/Roboto-Medium.ttf);
     font-weight: normal;
     font-style: normal;
     }
 @font-face {
     font-family: 'salesken-regular' ;
-    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Roboto-Regular.ttf') ;
+    src: url(../fonts/Roboto-Regular.ttf) ;
     font-weight: normal ;
     font-style: normal ;
     }
