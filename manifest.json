@@ -55,5 +55,8 @@
         "images/welcome.svg",
         "fonts/*.ttf"
     ],
-    "options_page": "options/options.html"
+    "options_ui": {
+        "page": "options/options.html",
+        "browser_style": false
+    }
 }
