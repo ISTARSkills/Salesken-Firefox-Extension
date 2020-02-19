@@ -7,7 +7,7 @@ var config = {
     "host": "https://api.talentify.in:8443",
     "socketurl": "wss://api.talentify.in:8443/cueSubscriber/userId"
 }
-console.log(config);
+//console.log(config);
 
 
 document.getElementById("salesken-password").onkeyup = function (e) {
@@ -17,7 +17,7 @@ document.getElementById("salesken-password").onkeyup = function (e) {
 }
 
 window.addEventListener("load", () => {
-    console.log("loaded");
+    //console.log("loaded");
     let salesken_icon = browser.extension.getURL("images/nav_icon.png");
 
 
@@ -57,13 +57,13 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             body: JSON.stringify(data)
         }).then((response) => {
             if (response.status == 200) {
-                console.log(response)
+                //console.log(response)
                 return response.json();
             } else {
-                console.log("Unauthorized");
+                //console.log("Unauthorized");
             }
         }).then((data) => {
-            console.log(data);
+            //console.log(data);
             let userObject = {
                 name: data.name,
                 profileImage: data.profileImage,

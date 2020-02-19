@@ -5,7 +5,7 @@ var config = {
 
 var websocket = null;
 browser.runtime.onInstalled.addListener(function () {
-  console.log("Installed salesken");
+  //console.log("Installed salesken");
   browser.storage.sync.remove("saleskenobj");
   browser.storage.sync.set({ "saleskenobj": {} });
 });
@@ -13,14 +13,14 @@ browser.runtime.onInstalled.addListener(function () {
 
 browser.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-    console.log(sender.tab ?
+    //console.log(sender.tab ?
       "from a content script:" + sender.tab.url :
       "from the extension");
-    console.log(request)
-    console.log(sender)
+    //console.log(request)
+    //console.log(sender)
     switch (request.action) {
       case "loggedIn":
-        console.log('i m in login')
+        //console.log('i m in login')
         connectWebsocket(request.userObject.id);
         storeBackground("userObject", request.userObject, "");
         break
@@ -50,14 +50,14 @@ function connectWebsocket(userId) {
   websocket = new WebSocket(config.socketurl.replace('userId', userId));
   websocket.onopen = function () {
     // subscribe to some channels
-    console.log("connection opened");
+    //console.log("connection opened");
 
     // /websocket.send("Hello");
 
   };
 
   websocket.onmessage = function (e) {
-    console.log('Message:', e.data);
+    //console.log('Message:', e.data);
     let msg = JSON.parse(e.data);
     msg.time=formatAMPM(new Date())
     if (msg.action) {
@@ -85,10 +85,10 @@ function connectWebsocket(userId) {
       //   try {
       //     if (tabs !== undefined && tabs.length > 0) {
       //       browser.tabs.sendMessage(tabs[0].id, { cue: e.data, action: "cue" }, function (response) {
-      //         console.log(JSON.stringify(response))
+      //         //console.log(JSON.stringify(response))
       //       });
       //     } else {
-      //       console.log('there is no active tab to update cues')
+      //       //console.log('there is no active tab to update cues')
       //     }
       //   } catch (error) {
 
@@ -100,10 +100,10 @@ function connectWebsocket(userId) {
   };
 
   websocket.onclose = function (e) {
-    console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+    //console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
     setTimeout(function () {
       browser.storage.sync.get('userid', (result) => {
-        console.log('Trying to reconnect websocket for: ' + result);
+        //console.log('Trying to reconnect websocket for: ' + result);
         connectWebsocket(result.userid);
       });
     }, 3000);
@@ -119,9 +119,9 @@ function connectWebsocket(userId) {
 function storeBackground(propertyName, propertyValue, incomingdata) {
   browser.storage.sync.get('saleskenobj', (result) => {
     var saleskenobj = result.saleskenobj;
-    console.log('bg bg bg')
+    //console.log('bg bg bg')
 
-    console.log(saleskenobj)
+    //console.log(saleskenobj)
     saleskenobj[propertyName] = propertyValue;
     browser.storage.sync.set({ "saleskenobj": saleskenobj }, function () {
       browser.tabs.query({}, function (tabs) {

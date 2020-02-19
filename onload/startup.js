@@ -55,8 +55,8 @@ From popup we are updating the login
 From background js we getting live cues and appending into the container
 */
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log(message);
-    console.log(sender);
+    //console.log(message);
+    //console.log(sender);
 
     switch (message.action) {
         case "cues":
@@ -77,7 +77,7 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 store("cues", null);
                 setTimeout(()=>{
                     browser.storage.sync.get('saleskenobj', (result) => {
-                        console.log(result);
+                        //console.log(result);
                     });
                 },400)
                 
@@ -118,7 +118,7 @@ function store(propertyName, propertyValue) {
 //         for (let inputText of middleelem.children) {
 //             inputText.innerHTML = inputText.innerHTML.split('<span class="salesken-cues-highlight">').join('')
 //             inputText.innerHTML = inputText.innerHTML.split('</span>').join('');
-//             console.log(inputText)
+//             //console.log(inputText)
 //             var originaHTML = inputText.innerHTML;
 //             var innerHTML = inputText.innerHTML.toLowerCase();
 //             var index = innerHTML.indexOf(text);

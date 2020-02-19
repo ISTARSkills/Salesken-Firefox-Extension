@@ -39,7 +39,7 @@ function dragElement(elmnt) {
         pos3 = e.clientX;
         pos4 = e.clientY;
         // set the element's new position:
-        //console.log((elmnt.offsetLeft - pos1), maxY, (elmnt.offsetLeft - pos1), maxX);
+        ////console.log((elmnt.offsetLeft - pos1), maxY, (elmnt.offsetLeft - pos1), maxX);
         if ((elmnt.offsetTop - pos2) <= maxY && (elmnt.offsetTop - pos2) >= 0) {
             elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         } else {
@@ -51,8 +51,8 @@ function dragElement(elmnt) {
     }
 
     function closeDragElement(event) {
-        console.log(event.x)
-        console.log(event.y)
+        //console.log(event.x)
+        //console.log(event.y)
 
         store("ratioGlobal", {
             x: document.getElementById('salesken_div').offsetLeft/window.innerWidth,
