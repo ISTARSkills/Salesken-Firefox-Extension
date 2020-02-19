@@ -11,10 +11,19 @@
     
   }
   
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
-  .sken-chat-container {
-      font-family: 'Roboto', sans-serif;
-  }
+  @font-face {
+    font-family: 'salesken-medium';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Roboto-Medium.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+@font-face {
+    font-family: 'salesken-regular';
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Roboto-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+    }
+
   
   .sken-widget-container {
       position: fixed;
@@ -26,7 +35,7 @@
       z-index: 1000000000000000;
       width: 50px;
       height: 50px;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .icon-shadow {
@@ -41,7 +50,7 @@
       box-shadow: 0 3px 40px 0 rgba(0, 0, 0, 0.16);
       background-color: #f9f9f9;
       border-radius: 10px;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .sken-chat-container>.sken-header {
@@ -49,12 +58,12 @@
       width: 100%;
       /* background-image: linear-gradient(276deg, #7e0947 112%, #ed4d67 29%); */
       border-radius: 10px 10px 0 0;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .sken-searchbar {
       /* height: 55px; */
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .sken-login-logout {
@@ -66,7 +75,7 @@
   
   .sken-sign-in-out-btn {
       font-size: 14px;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-medium !important;
       color: #ed4d67;
       font-weight: 500;
   }
@@ -74,7 +83,7 @@
   #sken-email-id {
       color: #222222;
       font-size: 14px;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .sken-search-box-input {
@@ -86,7 +95,7 @@
       background-color: #ffffff !important;
       outline: none !important;
       width: 100% !important;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-medium;
       font-weight: 500;
   }
   
@@ -94,7 +103,7 @@
       display: flex !important;
       flex-direction: column !important;
       /* box-sizing: border-box !important; */
-      height: calc(100% - 160px);
+      min-height: 340px;
       background-color: #f9f9f9;
       padding: 20px 15px;
       overflow: auto;
@@ -102,7 +111,7 @@
       /* display: flex; */
       /* align-items: flex-end;
       justify-content: flex-end; */
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .sken-cue-card {
@@ -113,7 +122,7 @@
       background-color: #ffffff;
       padding: 20px;
       margin-bottom: 10px;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
       margin-top: auto;
   }
   
@@ -121,7 +130,7 @@
       font-size: 12px;
       color: #999999;
       text-align: left;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
       margin-bottom: 10px;
   }
   
@@ -130,7 +139,7 @@
       color: #43425d;
       text-align: left;
       font-weight: 500;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-medium !important;
       margin-bottom: 10px;
   }
   
@@ -138,7 +147,7 @@
       font-size: 14px;
       color: #43425d;
       text-align: left;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .sken-button-transparent {
@@ -148,14 +157,14 @@
       padding: 3px !important;
       box-shadow: none !important;
       cursor: pointer !important;
-      font-family: 'Roboto', sans-serif;
+      font-family: salesken-regular;
   }
   
   .sken-button-theme {
       /* height: 40px !important; */
       background-color: #ed4d67 !important;
       font-size: 14px !important;
-      font-family: 'Roboto', sans-serif !important;
+      font-family: salesken-medium !important;
       color: #ffffff !important;
       outline: none !important;
       padding-top: 10px !important;

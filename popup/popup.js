@@ -18,7 +18,7 @@ document.getElementById("salesken-password").onkeyup = function (e) {
 
 window.addEventListener("load", () => {
     console.log("loaded");
-    let salesken_icon = browser.extension.getURL("images/nav_icon.png");
+    let salesken_icon = chrome.extension.getURL("images/nav_icon.png");
 
     document.getElementById("salesken-nav-icon-login").style.backgroundImage = "url(\'" + salesken_icon + "\')";
     document.getElementById("salesken-nav-icon-login").style.backgroundRepeat = "no-repeat";
@@ -31,7 +31,7 @@ window.addEventListener("load", () => {
     document.getElementById("salesken-nav-icon-logout").style.backgroundPositionY = "center";
     document.getElementById("salesken-nav-icon-logout").style.backgroundSize = "contain";
     document.getElementById("salesken-nav-icon-logout").style.height = "30px";
-    browser.storage.sync.get('saleskenobj', (result) => {
+    chrome.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
         if (saleskenobj.userObject) {
             document.getElementById("logged-out-container").style.display = "block";
@@ -86,7 +86,7 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             //storePopup("userObj", userObject);
 
 
-            browser.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
+            chrome.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
@@ -103,7 +103,7 @@ document.getElementById("loginBtn").addEventListener("click", () => {
 
 
 document.getElementById("logoutBtn").addEventListener("click", () => {
-    browser.runtime.sendMessage({ "action": "logout" });
+    chrome.runtime.sendMessage({ "action": "logout" });
     window.close()
 });
 

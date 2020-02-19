@@ -1,4 +1,4 @@
-
+var ratioGlobal={}
 /* general function for starting dragging on element by its id */
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -54,10 +54,12 @@ function dragElement(elmnt) {
         console.log(event.x)
         console.log(event.y)
 
-        store("divposition", {
-            position_x: document.getElementById('salesken_div').offsetLeft,
-            position_y: document.getElementById('salesken_div').offsetTop
-        });
+        store("ratioGlobal", {
+            x: document.getElementById('salesken_div').offsetLeft/window.innerWidth,
+            y: document.getElementById('salesken_div').offsetTop/window.innerHeight
+        }); 
+        ratioGlobal.x=document.getElementById('salesken_div').offsetLeft/window.innerWidth;
+        ratioGlobal.y=document.getElementById('salesken_div').offsetTop/window.innerHeight;
         /* stop moving when mouse button is released:*/
         document.onmouseup = null;
         document.onmousemove = null;

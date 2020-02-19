@@ -22,23 +22,28 @@ function loadExtensionState() {
 }
 
 function updateUIPosition() {
-    browser.storage.sync.get('saleskenobj', (res) => {
-        console.log('widget ui');
-        console.log(res)
-
-        if (res.saleskenobj.divposition) {
-            document.getElementById('salesken_div').style.left = res.saleskenobj.divposition.position_x + 'px'
-            document.getElementById('salesken_div').style.top = res.saleskenobj.divposition.position_y + 'px'
-        } else {
+    chrome.storage.sync.get('saleskenobj', (res) => {
+        if(res.saleskenobj.ratioGlobal){
+            document.getElementById('salesken_div').style.left =res.saleskenobj.ratioGlobal.x*window.innerWidth+'px';
+            document.getElementById('salesken_div').style.top =res.saleskenobj.ratioGlobal.y*window.innerHeight+'px';
+            ratioGlobal=res.saleskenobj.ratioGlobal;
+        }else{
+       
             console.log('res nahi hai ')
-            document.getElementById('salesken_div').style.left = window.screenX + window.innerWidth - 100 + 'px';
-            document.getElementById('salesken_div').style.top = window.screenY + window.innerHeight - 150 + 'px';
+            document.getElementById('salesken_div').style.left =  window.innerWidth - 100 + 'px';
+            document.getElementById('salesken_div').style.top = window.innerHeight - 150 + 'px';
+            store("ratioGlobal", {
+                x: document.getElementById('salesken_div').offsetLeft/window.innerWidth,
+                y: document.getElementById('salesken_div').offsetTop/window.innerHeight
+            }); 
+            ratioGlobal.x=document.getElementById('salesken_div').offsetLeft/window.innerWidth;
+            ratioGlobal.y=document.getElementById('salesken_div').offsetTop/window.innerHeight;
         }
     })
 }
 
 function isCuePopUpShown() {
-    browser.storage.sync.get('saleskenobj', (res) => {
+    chrome.storage.sync.get('saleskenobj', (res) => {
         console.log('ispopupOpen')
         console.log(res);
         if (res.saleskenobj.ispopupOpen) {
@@ -55,7 +60,7 @@ function isCuePopUpShown() {
 
 
 function updateSignInOutBtn() {
-    browser.storage.sync.get('saleskenobj', (result) => {
+    chrome.storage.sync.get('saleskenobj', (result) => {
         console.log('update sign in')
         var saleskenobj = result.saleskenobj;
         console.log(saleskenobj)
@@ -78,7 +83,7 @@ function updateSignInOutBtn() {
 }
 
 function updateCues() {
-    browser.storage.sync.get('saleskenobj', (result) => {
+    chrome.storage.sync.get('saleskenobj', (result) => {
         console.log(result);
         emptyCueContainer();
         if (result.saleskenobj.cues) {
@@ -138,7 +143,7 @@ function formatAMPM(date) {
 function updateSearch() {
     document.getElementById("sken-search-box-input").value = '';
 
-    browser.storage.sync.get('saleskenobj', (result) => {
+    chrome.storage.sync.get('saleskenobj', (result) => {
         if (result.saleskenobj.searchkey) {
             document.getElementById("sken-search-box-input").value = result.saleskenobj.searchkey;
             ;
@@ -155,7 +160,7 @@ function updateSearch() {
 }
 
 function shouldSearchShow() {
-    browser.storage.sync.get('saleskenobj', (result) => {
+    chrome.storage.sync.get('saleskenobj', (result) => {
         if (result.saleskenobj.callstarted) {
             document.getElementsByClassName('sken-search-box-input')[0].style.display = "block";
         } else {
