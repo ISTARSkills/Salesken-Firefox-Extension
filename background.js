@@ -15,10 +15,11 @@ chrome.runtime.onMessage.addListener(
     switch (request.action) {
       case "loggedIn":
         connectWebsocket(request.userObject.id);
-        storeBackground("userObject", request.userObject, "");
+        storeBackground("userObject", request.userObject, request.userObject);
+     
         break
       case "logout":
-        storeBackground("userObject", null, "");
+        storeBackground("userObject", null, null);
         disconnectWebsocket();
         break;
       case "openoption":
@@ -70,19 +71,18 @@ function connectWebsocket(userId) {
     }
   };
 
-
   websocket.onclose = function (e) {
-    setTimeout(function () {
-        chrome.storage.sync.get('saleskenobj', (result) => {
-          var saleskenobj = result.saleskenobj;
-          if (saleskenobj.userObject && saleskenobj.userObject.id) {
-            if (websocket.readyState === WebSocket.CLOSED) {
-                  connectWebsocket(saleskenobj.userObject.id);
-            }
+  setTimeout(function () {
+      chrome.storage.sync.get('saleskenobj', (result) => {
+        var saleskenobj = result.saleskenobj;
+        if (saleskenobj.userObject && saleskenobj.userObject.id) {
+          if (websocket.readyState === WebSocket.CLOSED) {
+                connectWebsocket(saleskenobj.userObject.id);
           }
-        });
-      }, 3000);
-    };
+        }
+      });
+    }, 3000);
+  };
 
   websocket.onerror = function (err) {
     console.error('Socket encountered error: ', err.message, 'Closing socket');

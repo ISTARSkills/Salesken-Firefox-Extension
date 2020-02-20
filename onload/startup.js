@@ -80,6 +80,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             shouldSearchShow();
             break;
         case "updatelogin":
+            if(message.senddata){
+
+            }else{
+                store("callstarted", false);
+                setTimeout(function () {
+                   shouldSearchShow();
+                }, 100);
+
+            }
             updateSignInOutBtn();
             break;
         case "storingcues":

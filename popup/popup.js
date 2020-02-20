@@ -75,13 +75,13 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             // storePopup("loggedIn", true);
             //storePopup("userObj", userObject);
 
-
-            chrome.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
-            
-
+            chrome.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
+            setTimeout(function () {
+                window.close();
+            }, 100);
 
         }).catch((error) => {
             console.error('Error:', error);

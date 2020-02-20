@@ -85,7 +85,9 @@ function updateSignInOutBtn() {
             document.getElementById("sken-sign-in-btn").style.display = "block";
             document.getElementById("sken-sign-out-btn").style.display = "none";
             store("cues", null);
+            
             emptyCueContainer();
+
         }
     });
 }
