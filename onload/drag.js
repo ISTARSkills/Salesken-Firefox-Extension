@@ -51,8 +51,8 @@ function dragElement(elmnt) {
     }
 
     function closeDragElement(event) {
-      //  console.log(event.x)
-      //  console.log(event.y)
+        //console.log(event.x)
+        //console.log(event.y)
 
         store("ratioGlobal", {
             x: document.getElementById('salesken_div').offsetLeft/window.innerWidth,

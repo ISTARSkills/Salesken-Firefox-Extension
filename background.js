@@ -5,7 +5,6 @@ var config = {
 
 var websocket = null;
 chrome.runtime.onInstalled.addListener(function () {
-  //console.log("Installed salesken");
   chrome.storage.sync.remove("saleskenobj");
   chrome.storage.sync.set({ "saleskenobj": {} });
 });
@@ -13,12 +12,8 @@ chrome.runtime.onInstalled.addListener(function () {
 
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
-   // console.log(sender.tab ? "from a content script:" + sender.tab.url :"from the extension");
-    //console.log(request)
-   // console.log(sender)
     switch (request.action) {
       case "loggedIn":
-       // console.log('i m in login')
         connectWebsocket(request.userObject.id);
         storeBackground("userObject", request.userObject, "");
         break
@@ -47,15 +42,10 @@ function connectWebsocket(userId) {
 
   websocket = new WebSocket(config.socketurl.replace('userId', userId));
   websocket.onopen = function () {
-    // subscribe to some channels
-    //console.log("connection opened");
-
-    // /websocket.send("Hello");
-
   };
 
   websocket.onmessage = function (e) {
-    //console.log('Message:', e.data);
+   // console.log('Message:', e.data);
     let msg = JSON.parse(e.data);
     msg.time=formatAMPM(new Date())
     if (msg.action) {
@@ -70,7 +60,6 @@ function connectWebsocket(userId) {
           e.data=JSON.stringify(msg)
           let cuesResult = result.saleskenobj.cues;
           cuesResult.push(msg);
-
           storeBackground("cues", cuesResult, msg);
         } else {
           let cues = [];
@@ -78,18 +67,16 @@ function connectWebsocket(userId) {
           storeBackground("cues", cues, msg);
         }
       });
-
-     
-
     }
   };
 
   websocket.onclose = function (e) {
-    console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
-    setTimeout(function () {
-      chrome.storage.sync.get('userid', (result) => {
-        console.log('Trying to reconnect websocket for: ' + result);
-        connectWebsocket(result.userid);
+  setTimeout(function () {
+      chrome.storage.sync.get('saleskenobj', (result) => {
+        var saleskenobj = result.saleskenobj;
+        if (saleskenobj.userObject && saleskenobj.userObject.id) {
+        connectWebsocket(saleskenobj.userObject.id);
+        }
       });
     }, 3000);
   };
@@ -104,9 +91,6 @@ function connectWebsocket(userId) {
 function storeBackground(propertyName, propertyValue, incomingdata) {
   chrome.storage.sync.get('saleskenobj', (result) => {
     var saleskenobj = result.saleskenobj;
-   // console.log('bg bg bg')
-
-    //console.log(saleskenobj)
     saleskenobj[propertyName] = propertyValue;
     chrome.storage.sync.set({ "saleskenobj": saleskenobj }, function () {
       chrome.tabs.query({}, function (tabs) {

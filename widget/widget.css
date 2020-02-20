@@ -4,26 +4,30 @@
     text-align: center !important;
   
   }
-  
+  @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
   #salesken_divheader {
     cursor: move !important;
     z-index: 99999999 !important;
     
   }
+  .sken-chat-container {
+    font-family: 'Roboto', sans-serif !important;
+}
+/*   
   @font-face {
     font-family: 'salesken-medium';
-    src: url(../fonts/Roboto-Medium.ttf);
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Roboto-Medium.ttf');
     font-weight: normal;
     font-style: normal;
     }
-@font-face {
+    @font-face {
     font-family: 'salesken-regular' ;
-    src: url(../fonts/Roboto-Regular.ttf) ;
+    src: url('chrome-extension://__MSG_@@extension_id__/fonts/Roboto-Regular.ttf') ;
     font-weight: normal ;
     font-style: normal ;
     }
-
-  
+   */
   .sken-widget-container {
       position: fixed !important;
       border-radius: 10px !important;
@@ -34,8 +38,8 @@
       z-index: 1000000000000000 !important;
       width: 50px !important;
       height: 50px !important;
-      font-family: salesken-regular !important;
-  }
+      font-family: 'Roboto', sans-serif !important;
+    }
   
   .icon-shadow {
       box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.16) !important;
@@ -49,21 +53,21 @@
       box-shadow: 0 3px 40px 0 rgba(0, 0, 0, 0.16) !important;
       background-color: #f9f9f9 !important;
       border-radius: 10px !important;
-      font-family: salesken-regular !important;
-  }
+      font-family: 'Roboto', sans-serif !important;
+    }
   
   .sken-chat-container>.sken-header {
       height: 62px !important;
       width: 100% !important;
       /* background-image: linear-gradient(276deg, #7e0947 112%, #ed4d67 29%); */
       border-radius: 10px 10px 0 0 !important;
-      font-family: salesken-regular;
-  }
+      font-family: 'Roboto', sans-serif !important;
+    }
   
   .sken-searchbar {
       /* height: 55px; */
-      font-family: salesken-regular !important;
-  }
+      font-family: 'Roboto', sans-serif !important;
+    }
   
   .sken-login-logout {
       background: #ffffff !important;
@@ -74,7 +78,7 @@
   
   .sken-sign-in-out-btn {
       font-size: 14px !important;
-      font-family: salesken-medium !important;
+      font-family: 'Roboto', sans-serif !important;
       color: #ed4d67 !important;
       font-weight: 500 !important;
   }
@@ -82,7 +86,7 @@
   #sken-email-id {
       color: #222222 !important;
       font-size: 14px !important;
-      font-family: salesken-regular !important;
+      font-family: 'Roboto', sans-serif !important;
   }
   
   .sken-search-box-input {
@@ -94,7 +98,7 @@
       background-color: #ffffff !important;
       outline: none !important;
       width: 100% !important;
-      font-family: salesken-medium !important;
+      font-family: 'Roboto', sans-serif !important;
       font-weight: 500 !important;
   }
   
@@ -110,7 +114,7 @@
       /* display: flex; */
       /* align-items: flex-end;
       justify-content: flex-end; */
-      font-family: salesken-regular !important;
+      font-family: 'Roboto', sans-serif !important;
   }
   
   .sken-cue-card {
@@ -121,7 +125,7 @@
       background-color: #ffffff !important;
       padding: 20px !important;
       margin-bottom: 10px !important;
-      font-family: salesken-regular !important;
+      font-family: 'Roboto', sans-serif !important;
       margin-top: auto !important;
   }
   
@@ -129,7 +133,7 @@
       font-size: 12px !important;
       color: #999999 !important;
       text-align: left !important;
-      font-family: salesken-regular !important;
+      font-family: 'Roboto', sans-serif !important;
       margin-bottom: 10px !important;
   }
   
@@ -138,7 +142,7 @@
       color: #43425d !important;
       text-align: left !important;
       font-weight: 500 !important;
-      font-family: salesken-medium !important;
+      font-family: 'Roboto', sans-serif !important;
       margin-bottom: 10px !important;
   }
   
@@ -146,7 +150,7 @@
       font-size: 14px !important;
       color: #43425d !important;
       text-align: left !important;
-      font-family: salesken-regular !important;
+      font-family: 'Roboto', sans-serif !important;
   }
   
   .sken-button-transparent {
@@ -156,14 +160,14 @@
       padding: 3px !important;
       box-shadow: none !important;
       cursor: pointer !important;
-      font-family: salesken-regular ;
+      font-family: 'Roboto', sans-serif !important;
   }
   
   .sken-button-theme {
       /* height: 40px !important; */
       background-color: #ed4d67 !important;
       font-size: 14px !important;
-      font-family: salesken-medium !important;
+      font-family: 'Roboto', sans-serif !important;
       color: #ffffff !important;
       outline: none !important;
       padding-top: 10px !important;

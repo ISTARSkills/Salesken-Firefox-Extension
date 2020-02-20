@@ -35,7 +35,7 @@ function updateUIPosition() {
             ratioGlobal = res.saleskenobj.ratioGlobal;
         } else {
 
-           // console.log('res nahi hai ')
+            //console.log('res nahi hai ')
             document.getElementById('salesken_div').style.left = window.innerWidth - 100 + 'px';
             document.getElementById('salesken_div').style.top = window.innerHeight - 150 + 'px';
             store("ratioGlobal", {
@@ -51,7 +51,7 @@ function updateUIPosition() {
 function isCuePopUpShown() {
     chrome.storage.sync.get('saleskenobj', (res) => {
         //console.log('ispopupOpen')
-       // console.log(res);
+        //console.log(res);
         if (res.saleskenobj.ispopupOpen) {
             document.getElementById("salesken-cue-container").style.display = "block";
             document.getElementById("skenicon").style.display = "none";
@@ -69,28 +69,30 @@ function updateSignInOutBtn() {
     chrome.storage.sync.get('saleskenobj', (result) => {
         //console.log('update sign in')
         var saleskenobj = result.saleskenobj;
-       // console.log(saleskenobj)
-       // console.log(saleskenobj.userObject)
+        //console.log(saleskenobj)
+        //console.log(saleskenobj.userObject)
         //console.log(saleskenobj.userObject.email)
 
         if (saleskenobj.userObject && saleskenobj.userObject.id) {
-            console.log("called logged in");
+            //console.log("called logged in");
             let email = saleskenobj.userObject.email;
             document.getElementById("sken-email-id").innerText = email;
             document.getElementById("sken-sign-in-btn").style.display = "none";
             document.getElementById("sken-sign-out-btn").style.display = "block";
         } else {
-            console.log("called logged out");
+            //console.log("called logged out");
             document.getElementById("sken-email-id").innerText = "";
             document.getElementById("sken-sign-in-btn").style.display = "block";
             document.getElementById("sken-sign-out-btn").style.display = "none";
+            store("cues", null);
+            emptyCueContainer();
         }
     });
 }
 
 function updateCues() {
     chrome.storage.sync.get('saleskenobj', (result) => {
-        console.log(result);
+        //console.log(result);
         emptyCueContainer();
         if (result.saleskenobj.cues) {
             for (let cue of result.saleskenobj.cues) {
@@ -116,7 +118,7 @@ function emptyCueContainer() {
     document.getElementById("welcome-card-img").style.backgroundSize = "80px 80px";
     document.getElementById("welcome-card-img").style.backgroundRepeat = "no-repeat";
     document.getElementById("welcome-card-time").innerHTML = formatAMPM(new Date())
-    console.log("gayab")
+   // console.log("gayab")
 }
 
 function appendCue(msg) {

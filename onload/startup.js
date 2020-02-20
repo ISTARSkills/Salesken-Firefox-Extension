@@ -75,8 +75,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
             }else{
                 store("cues", null);
-               
-                
+                emptyCueContainer();
             }
             shouldSearchShow();
             break;

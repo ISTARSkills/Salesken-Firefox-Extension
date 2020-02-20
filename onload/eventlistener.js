@@ -1,3 +1,7 @@
+var rtime;
+var timeout = false;
+var delta = 200;
+
 function addEventListnerForExtension() {
 
 
@@ -5,7 +9,7 @@ function addEventListnerForExtension() {
     document.getElementById("skenicon").addEventListener("click", function (e) {
         document.getElementById("salesken-cue-container").style.display = "block";
         document.getElementById("skenicon").style.display = "none";
-       // console.log(e.clientX);
+        //console.log(e.clientX);
         var height = window.innerHeight
         var width = window.innerWidth
         var salesken_div_height=document.getElementById('salesken_div').offsetHeight;
@@ -29,9 +33,7 @@ function addEventListnerForExtension() {
     /* end of salesken logo icon click to open cues pop window */
 
     /* start of resizing the window and changing popup location accordingly */
-    var rtime;
-    var timeout = false;
-    var delta = 200;
+   
     window.addEventListener("resize", function (e) {
         var height = window.innerHeight
         var width = window.innerWidth
@@ -68,17 +70,7 @@ function addEventListnerForExtension() {
             setTimeout(resizeend, delta);
         }
     })
-    function resizeend() {
-        if (new Date() - rtime < delta) {
-            setTimeout(resizeend, delta);
-        } else {
-            timeout = false;
-            store("ratioGlobal", {
-                x: document.getElementById('salesken_div').offsetLeft/window.innerWidth,
-                y: document.getElementById('salesken_div').offsetTop/window.innerHeight
-            }); 
-        }               
-    }
+   
     /* end of resizing the window and changing popup location accordingly */
 
     /* start of putting focus on search input as its parent is draggable */
@@ -89,7 +81,7 @@ function addEventListnerForExtension() {
 
     /* start of search input clear all event capture */
     document.getElementById("sken-search-box-input").addEventListener("search", (e) => {
-       // console.log('searxh event', e.target.value)
+        //console.log('searxh event', e.target.value)
         store("searchkey", '')
 
         const ke = new KeyboardEvent("keyup", {
@@ -104,7 +96,7 @@ function addEventListnerForExtension() {
     /* start of search input text change event*/
     document.getElementById("sken-search-box-input").addEventListener("keyup", (e) => {
         e.stopPropagation();
-        //console.log(e.target.value);
+       // console.log(e.target.value);
         let value = e.target.value;
         store("searchkey", e.target.value)
         //console.log("asdasdsdasad" + value)
@@ -181,4 +173,16 @@ function addEventListnerForExtension() {
     });
     /* End of Cues pop up minimize click event */
 
+}
+
+function resizeend() {
+    if (new Date() - rtime < delta) {
+        setTimeout(resizeend, delta);
+    } else {
+        timeout = false;
+        store("ratioGlobal", {
+            x: document.getElementById('salesken_div').offsetLeft/window.innerWidth,
+            y: document.getElementById('salesken_div').offsetTop/window.innerHeight
+        }); 
+    }               
 }
