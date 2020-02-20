@@ -70,16 +70,19 @@ function connectWebsocket(userId) {
     }
   };
 
+
   websocket.onclose = function (e) {
-  setTimeout(function () {
-      chrome.storage.sync.get('saleskenobj', (result) => {
-        var saleskenobj = result.saleskenobj;
-        if (saleskenobj.userObject && saleskenobj.userObject.id) {
-        connectWebsocket(saleskenobj.userObject.id);
-        }
-      });
-    }, 3000);
-  };
+    setTimeout(function () {
+        chrome.storage.sync.get('saleskenobj', (result) => {
+          var saleskenobj = result.saleskenobj;
+          if (saleskenobj.userObject && saleskenobj.userObject.id) {
+            if (websocket.readyState === WebSocket.CLOSED) {
+                  connectWebsocket(saleskenobj.userObject.id);
+            }
+          }
+        });
+      }, 3000);
+    };
 
   websocket.onerror = function (err) {
     console.error('Socket encountered error: ', err.message, 'Closing socket');
