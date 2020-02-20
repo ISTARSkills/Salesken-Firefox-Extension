@@ -20,7 +20,9 @@ chrome.runtime.onMessage.addListener(
         break
       case "logout":
         storeBackground("userObject", null, null);
-        disconnectWebsocket();
+        setTimeout(function () {
+          disconnectWebsocket();
+          },1500);
         break;
       case "openoption":
         chrome.runtime.openOptionsPage();
