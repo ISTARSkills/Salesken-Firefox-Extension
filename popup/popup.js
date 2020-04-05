@@ -4,8 +4,8 @@
 
 
 var config = {
-    "host": "https://api.talentify.in:8443",
-    "socketurl": "wss://api.talentify.in:8443/cueSubscriber/userId"
+    "host": "https://cue.salesken.ai/cueing",
+    "socketurl": "wss://cue.salesken.ai/cueing/cueSubscriber/userId/token"
 }
 //console.log(config);
 
@@ -19,10 +19,19 @@ document.getElementById("salesken-password").onkeyup = function (e) {
 window.addEventListener("load", () => {
     //console.log("loaded");
     let salesken_icon = chrome.extension.getURL("images/nav_icon.png");
-
+    var height =document.querySelector('#loginContent').offsetHeight;
+    document.getElementById("forgotContent").style.height =height+'px';
 
     chrome.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
+        if(saleskenobj.storedEmail){
+            document.getElementById("salesken-email").value=saleskenobj.storedEmail;
+        }
+        if(saleskenobj.storedPwdKey){
+            document.getElementById("salesken-password").value=saleskenobj.storedPwdKey;
+        }
+
+
         if (saleskenobj.userObject) {
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
@@ -40,9 +49,11 @@ window.addEventListener("load", () => {
 
 
 document.getElementById("loginBtn").addEventListener("click", () => {
-
+   
     let email = document.getElementById("salesken-email");
     let password = document.getElementById("salesken-password");
+    storeProp('storedEmail',email.value);
+
     let alert = document.getElementById("salesken-alert");
     //let url = "https://api.talentify.in:8443/api/v1/user/authenticate"; 
     let url = config.host + "/api/v1/user/authenticate";
@@ -52,7 +63,8 @@ document.getElementById("loginBtn").addEventListener("click", () => {
         fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Client-Id': 'BrowserExtensionChrome'
             },
             body: JSON.stringify(data)
         }).then((response) => {
@@ -64,20 +76,14 @@ document.getElementById("loginBtn").addEventListener("click", () => {
             }
         }).then((data) => {
             //console.log(data);
-            let userObject = {
-                name: data.name,
-                profileImage: data.profileImage,
-                mobile: data.mobile,
-                language: data.language,
-                email: data.email,
-                id: data.id
-            }
+            let userObject = data
             // storePopup("loggedIn", true);
             //storePopup("userObj", userObject);
 
             document.getElementById("logged-out-container").style.display = "block";
             document.getElementById("logged-in-container").style.display = "none";
             document.getElementById("salesken-user-email").innerText = userObject.name + " !";
+            storeProp('storedPwdKey',password.value);
             chrome.runtime.sendMessage({ "action": "loggedIn", "userObject": userObject });
             setTimeout(function () {
                 window.close();
@@ -99,7 +105,71 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
     document.getElementById("logged-in-container").style.display = "block";
 
     chrome.runtime.sendMessage({ "action": "logout" });
-    //window.close()
+    //window.close() 
+});
+
+document.getElementById("forgotBtn").addEventListener("click", () => {
+    
+    document.getElementById("salesken-alert").style.display = "none";
+    document.getElementById("loginContent").style.display = "none";
+    document.getElementById("forgotContent").style.display = "block";
+
+   
+    //window.close() forgotBtn
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+
+    document.getElementById("loginContent").style.display = "block";
+    document.getElementById("forgotContent").style.display = "none";
+
+   
+    //window.close() 
+});
+
+document.getElementById("forgotSubmit").addEventListener("click", () => {
+    document.getElementById("email-error").style.display = " none";
+
+    if(document.getElementById("forgot-email").value){
+   let url = config.host + "/api/v1/user/forgot?email="+document.getElementById("forgot-email").value;
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Client-Id': 'BrowserExtensionChrome'
+        },
+    }).then((response) => {
+        if (response.status == 200) {
+            //console.log(response)
+            return response.json();
+        } else {
+            //console.log("Unauthorized");
+        }
+    }).then((response) => {
+        console.log(response);
+        if(response.success){
+            document.getElementById("generatedEmail").style.display = "block";
+            document.getElementById("message_response").innerHTML='Check your Email "'+document.getElementById("forgot-email").value+'" to reset your password. The reset link will expire in 30 minutes'
+
+            document.getElementById("forgotlayout").style.display = "none";
+        }else{
+            document.getElementById("forgot-email").classList.add("is-invalid");
+            document.getElementById("email-error").innerHTML=response.message;
+            document.getElementById("email-error").style.display = "block";
+        }
+       
+    }).catch((error) => {
+        document.getElementById("forgot-email").classList.add("is-invalid");
+        document.getElementById("email-error").innerHTML="Please Check Your Internet Connection.";
+        document.getElementById("email-error").style.display = "block";
+    });;
+}else{
+    document.getElementById("forgot-email").classList.add("is-invalid");
+    document.getElementById("email-error").innerHTML="Please enter an Email";
+    document.getElementById("email-error").style.display = "block";
+
+}
+    //window.close() forgotSubmit
 });
 
 document.getElementById("salesken-icon").addEventListener("click", () => {
@@ -162,6 +232,12 @@ function isEmailValid(email) {
     return re.test(String(email).toLowerCase());
 }
 
-
+function storeProp(propertyName, propertyValue) {
+    chrome.storage.sync.get('saleskenobj', (result) => {
+        var saleskenobj = result.saleskenobj;
+        saleskenobj[propertyName] = propertyValue;
+        chrome.storage.sync.set({ "saleskenobj": saleskenobj });
+    });
+}
 
 

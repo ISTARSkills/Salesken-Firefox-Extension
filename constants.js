@@ -1,5 +1,5 @@
 export default {
-    "host": "https://api.talentify.in:8443",
-    "socketurl": "ws://api.talentify.in:8443/cueSubscriber/userId"
+    "host": "https://cue.salesken.ai/cueing",
+    "socketurl": "wss://cue.salesken.ai/cueing/cueSubscriber/userId/token"
 }
 

@@ -1,6 +1,6 @@
 var config = {
-  "host": "https://api.talentify.in:8443",
-  "socketurl": "wss://api.talentify.in:8443/cueSubscriber/userId"
+  "host": "https://cue.salesken.ai/cueing",
+  "socketurl": "wss://cue.salesken.ai/cueing/cueSubscriber/userId/token"
 }
 
 var websocket = null;
@@ -14,15 +14,16 @@ chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     switch (request.action) {
       case "loggedIn":
-        connectWebsocket(request.userObject.id);
+        connectWebsocket(request.userObject.id, request.userObject.token);
         storeBackground("userObject", request.userObject, request.userObject);
-     
+
         break
       case "logout":
         storeBackground("userObject", null, null);
         setTimeout(function () {
           disconnectWebsocket();
-          },1500);
+          sendLogoutBackend(request.userObject.token);
+        }, 1500);
         break;
       case "openoption":
         chrome.runtime.openOptionsPage();
@@ -41,16 +42,16 @@ function disconnectWebsocket() {
   }
 }
 
-function connectWebsocket(userId) {
+function connectWebsocket(userId, token) {
 
-  websocket = new WebSocket(config.socketurl.replace('userId', userId));
+  websocket = new WebSocket(config.socketurl.replace('userId', userId).replace('token', token));
   websocket.onopen = function () {
   };
 
   websocket.onmessage = function (e) {
-   // console.log('Message:', e.data);
+    // console.log('Message:', e.data);
     let msg = JSON.parse(e.data);
-    msg.time=formatAMPM(new Date())
+    msg.time = formatAMPM(new Date())
     if (msg.action) {
       if (msg.action == "CallStarted") {
         storeBackground("callstarted", true, true);
@@ -60,7 +61,7 @@ function connectWebsocket(userId) {
     } else {
       chrome.storage.sync.get('saleskenobj', (result) => {
         if (result.saleskenobj && result.saleskenobj.cues) {
-          e.data=JSON.stringify(msg)
+          e.data = JSON.stringify(msg)
           let cuesResult = result.saleskenobj.cues;
           cuesResult.push(msg);
           storeBackground("cues", cuesResult, msg);
@@ -74,12 +75,12 @@ function connectWebsocket(userId) {
   };
 
   websocket.onclose = function (e) {
-  setTimeout(function () {
+    setTimeout(function () {
       chrome.storage.sync.get('saleskenobj', (result) => {
         var saleskenobj = result.saleskenobj;
         if (saleskenobj.userObject && saleskenobj.userObject.id) {
           if (websocket.readyState === WebSocket.CLOSED) {
-                connectWebsocket(saleskenobj.userObject.id);
+            connectWebsocket(saleskenobj.userObject.id, saleskenobj.userObject.token);
           }
         }
       });
@@ -132,4 +133,24 @@ function formatAMPM(date) {
   minutes = minutes < 10 ? '0' + minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
+}
+
+function sendLogoutBackend(token) {
+  var url =  config.host + "/api/v1/user/logout";
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Basic ' + token
+    }
+  }).then((response) => {
+    if (response.status == 200) {
+      //console.log(response)
+      //return response.json();
+    } else {
+      //console.log("Unauthorized");
+    }
+  }).catch((error) => {
+    console.error('Error:', error);
+    alert.style.visibility = 'visible'
+  });
 }

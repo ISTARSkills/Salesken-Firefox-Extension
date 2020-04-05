@@ -1,4 +1,6 @@
-
+var config = {
+    "host": "https://cue.salesken.ai/cueing",
+}
 /* this function will check all properties store in storage and maintains the state of the extension */
 var welocomeCueHtml = `
     <div class="sken-cue-card salesken-flex">
@@ -12,7 +14,7 @@ var welocomeCueHtml = `
                 <div id="welcome-card-img"></div>
             </div>
             <div class="w-full">
-                <a type="button" href="https://salesken.ai/sign-in.html" class="sken-button-theme">START HERE</a>
+                <a type="button" href="https://share.hsforms.com/13W9yOMgeT6euOL_fZ1hq0Q48oic" class="sken-button-theme">START HERE</a>
             </div>
         </div>
     </div>`;
@@ -124,15 +126,22 @@ function emptyCueContainer() {
 }
 
 function appendCue(msg) {
-
+if(msg.text){
     let html = `
     <div class="sken-cue-card salesken-flex">
-        <div class="salesken-flex salesken-flex-column">
-            <div class="sken-cue-time">${msg.time}</div>
-            <div class="sken-cue-title">${msg.title}</div>
-            <div class="sken-cue-text">${msg.text}</div>
-        </div>
-    </div>`;
+   <div class="salesken-flex salesken-flex-column">
+      <div class="salesken-flex salesken-align-center">
+      <div class="sken-cue-time"> ${msg.time}</div>
+	   <div class="salesken-progress salesken-rounded p-0 salesken-progress-box">
+            <div class="salesken-progress-bar salesken-progress-bar-striped bg-purple" role="progressbar" style="width: 100%; text-align: left;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+               <div class="font-weight-bold f-12 purple">${msg.type}</div>
+            </div>
+         </div>
+		 </div>
+      <div class="sken-cue-title">${msg.title}</div>
+      <div class="sken-cue-text">${msg.text}</div>
+   </div>
+</div>`;
     let containerBody = document.getElementsByClassName("sken-cues-body")[0];
 
     containerBody.innerHTML += html;
@@ -141,7 +150,8 @@ function appendCue(msg) {
     const ke = new KeyboardEvent("keyup", {
         bubbles: true, cancelable: true, keyCode: 13
     });
-    document.getElementById("sken-search-box-input").dispatchEvent(ke);;
+    document.getElementById("sken-search-box-input").dispatchEvent(ke);
+}
 }
 
 
@@ -206,3 +216,7 @@ function formatAMPM(date) {
     var strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
 }   
+
+
+
+

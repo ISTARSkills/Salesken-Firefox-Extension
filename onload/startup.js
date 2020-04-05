@@ -36,6 +36,8 @@ fetch(chrome.extension.getURL("widget/widget.html"))
         loadExtensionState();
         addEventListnerForExtension();
         dragElement(document.getElementById("salesken_div"));
+
+        thinClient();
     }).catch((error) => {
         console.error('Error:', error);
     });
@@ -61,6 +63,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     switch (message.action) {
         case "cues":
             if (message.cue) {
+                console.log(message)
                 appendCue(message.cue);
             }
             setTimeout(function () {
@@ -135,3 +138,58 @@ function store(propertyName, propertyValue) {
 
 //     }
 // }
+
+function startCallThinClient(user_id, token){
+    var url = config.host + "/user_stream_status?method=StartStream&user_id="+user_id;
+    sendGetRequestThinClient(url, token);
+}
+
+function endCallThinClient(user_id, token){
+    var url =  config.host + "/user_stream_status?method=StopStream&user_id="+user_id;
+    sendGetRequestThinClient(url, token);
+}
+
+function sendGetRequestThinClient(url, token){
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Basic '+ token
+        }
+    }).then((response) => {
+        if (response.status == 200) {
+            //console.log(response)
+            //return response.json();
+        } else {
+            //console.log("Unauthorized");
+        }
+    }).catch((error) => {
+        console.error('Error:', error);
+        alert.style.visibility = 'visible'
+    });
+}
+thinClient = function (){
+    chrome.storage.sync.get('saleskenobj', (result) => {
+        var saleskenobj = result.saleskenobj;
+        if (saleskenobj.userObject && saleskenobj.userObject.id) {
+            // User is signed in, activate the logic
+            if(saleskenobj.userObject.thinClientConfiguration.thinClientActive
+                 && saleskenobj.userObject.thinClientConfiguration.thinClientMode == 'slack'){
+                if(window.location.href.indexOf(saleskenobj.userObject.thinClientConfiguration.baseUrls[0])>-1){
+                    startCallThinClient(saleskenobj.userObject.id, saleskenobj.userObject.token);
+                    window.addEventListener('beforeunload', (event) => {
+                        endCallThinClient(saleskenobj.userObject.id, saleskenobj.userObject.token);
+                        // Cancel the event as stated by the standard.
+                        event.preventDefault();
+                        // Chrome requires returnValue to be set.
+                        event.returnValue = '';
+                      });
+                }
+
+
+                
+            }
+        } else {
+            // User is signed out, deactivate any setIntervals if required
+        }
+    });
+}

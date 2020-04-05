@@ -23,7 +23,7 @@
                     <div id="salesken-alert" class="salesken-alert" style="visibility:hidden;">
                         Username/Password is wrong or account is Suspended.
                     </div>
-                    <div class=" mx-35">
+                    <div class=" mx-35" id="loginContent">
                         <label class="block text-black-26 text-sm font-medium mb-10 pt-10" for="email">
                             Email address
                         </label>
@@ -41,13 +41,53 @@
                             <div id="salesken-icon"
                                 class="eye-grey eye-icon focus:outline-none display-center cursor-pointer"></div>
                         </div>
-                        <div class="flex pt-40 pb-40">
+                        <div class="flex pt-40 pb-25">
                             <div id="loginBtn"
                                 class=" bg-red-600 hover:bg-red-900 text-white font-bold px-16 h-40 focus:outline-none text-sm w-full display-center cursor-pointer">
                                 LOGIN
                             </div>
                         </div>
 
+                        <div class="flex pt-10 pb-40">
+                            <div id="forgotBtn" class="f-14  text-left font-weight-bold p-0 theme_color">Forgot Password ?</div>
+                        </div>
+
+                    </div>
+
+                    <div class=" mx-35" id="forgotContent" style="display: none;">
+                        <div class="flex h-full flex-col " id="forgotlayout" >
+                            <div>
+                        <label class="block text-black-26 text-sm font-medium mb-10 pt-10" for="email">
+                            Email address
+                        </label>
+                        <input id="forgot-email"
+                            class="appearance-none border-input border h-50 w-95 pl-12 text-gray-700 leading-tight focus:outline-none text-sm"
+                            type="text" placeholder="Email" name="email">
+                            <div id="email-error" class="error  f-14 theme_color mt-15" for="email" style="display: none;margin-left: 4px;">Entered email is wrong!</div>
+                        </div>
+                        <div>
+                        <div class="flex   pt-40 pb-25">
+                            <div id="forgotSubmit"
+                                class=" bg-red-600 hover:bg-red-900 text-white font-bold px-16 h-40 focus:outline-none text-sm w-full display-center cursor-pointer">
+                                GET RESET LINK
+                            </div>
+                        </div>
+
+                        <div class="flex pb-40">
+                            <div id="backBtn" class=" mt-30 f-14 btn text-left font-weight-bold p-0 theme_color">Back</div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="mt-40 generated" id="generatedEmail" style="display: none;">
+                        <div class="flex align-items-middle">
+                            <img src="http://beta.talentify.in/new_assets/image/checkiconsmall.png">
+                        <p class="greyish-brown f-14   fw-500">                        Email sent!</p>
+
+
+                        </div>
+                        <p class="mb-0 brown-grey pl-1 f-14 email_check" id="message_response">Check your Email "feroz@salesken.ai" to reset your password. The reset link will expire in 30 minutes</p>
+                    </div>
                     </div>
                 </div>
             </div>
