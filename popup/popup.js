@@ -47,7 +47,18 @@ window.addEventListener("load", () => {
 });
 
 
-
+document.getElementById("downloadImg").addEventListener("click", () => {
+//https://storage.googleapis.com/istar-static/SaleskenLiteSetup_20200325.msi
+const url = 'https://storage.googleapis.com/istar-static/SaleskenLiteSetup_20200325.msi';
+const a = document.createElement('a');
+a.style.display = 'none';
+a.href = url;
+// the filename you want
+a.download = 'todo-1.json';
+document.body.appendChild(a);
+a.click();
+window.URL.revokeObjectURL(url);
+});
 document.getElementById("loginBtn").addEventListener("click", () => {
    
     let email = document.getElementById("salesken-email");
